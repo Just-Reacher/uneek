@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects & Portfolio | Uneek Property Management & Real Estate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-deep:  #0d3320;
+      --green-mid:   #1a5c38;
+      --green-light: #2a7a4e;
+      --gold:        #c9a84c;
+      --gold-light:  #e8c96a;
+      --gold-pale:   #f5e9c4;
+      --white:       #ffffff;
+      --off-white:   #f9f7f2;
+      --text-dark:   #1a1a1a;
+      --text-mid:    #444444;
+      --text-light:  #777777;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden;}
+    h1,h2,h3,h4,h5{font-family:'Cormorant Garamond',serif;}
+
+    /* ── NAVBAR ── */
+    .navbar{background:transparent;padding:1.4rem 0;position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .4s;}
+    .navbar.scrolled{background:var(--green-deep);padding:.9rem 0;box-shadow:0 4px 30px rgba(0,0,0,.3);}
+    .navbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .brand-logo{width:46px;height:46px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--green-deep);flex-shrink:0;}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1;}
+    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:.04em;}
+    .brand-tagline{font-size:.65rem;color:var(--gold-light);letter-spacing:.15em;text-transform:uppercase;}
+    .navbar-nav .nav-link{color:rgba(255,255,255,.88)!important;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem!important;transition:color .2s;position:relative;}
+    .navbar-nav .nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;right:50%;height:2px;background:var(--gold);transition:all .3s;}
+    .navbar-nav .nav-link:hover{color:var(--gold-light)!important;}
+    .navbar-nav .nav-link:hover::after,.navbar-nav .nav-link.active::after{left:1rem;right:1rem;}
+    .navbar-nav .nav-link.active{color:var(--gold-light)!important;}
+    .nav-cta{background:var(--gold)!important;color:var(--green-deep)!important;border-radius:4px;padding:.5rem 1.2rem!important;font-weight:600!important;margin-left:.5rem;}
+    .nav-cta:hover{background:var(--gold-light)!important;}
+    .navbar-toggler{border-color:rgba(255,255,255,.3);}
+    .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+
+    /* ── PAGE HERO ── */
+    .page-hero{min-height:52vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+    .page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=80') center/cover no-repeat;}
+    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(13,51,32,.95) 0%,rgba(13,51,32,.72) 60%,rgba(13,51,32,.45) 100%);}
+    .page-hero-content{position:relative;z-index:2;padding-top:110px;padding-bottom:60px;}
+    .breadcrumb-bar{display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.2rem;}
+    .breadcrumb-bar a{color:var(--gold-light);text-decoration:none;}
+    .breadcrumb-bar i{font-size:.55rem;}
+    .page-hero h1{font-size:clamp(2.6rem,5.5vw,4.5rem);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:1rem;animation:fadeUp .8s .3s both;}
+    .page-hero h1 em{color:var(--gold-light);font-style:normal;}
+    .page-hero-sub{font-size:1rem;color:rgba(255,255,255,.72);max-width:520px;line-height:1.8;animation:fadeUp .8s .5s both;}
+    .hero-bottom-bar{position:absolute;bottom:0;left:0;right:0;background:var(--gold);height:5px;}
+
+    /* ── SHARED ── */
+    .section-eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;display:flex;align-items:center;gap:10px;}
+    .section-eyebrow::before{content:'';display:block;width:30px;height:2px;background:var(--gold);}
+    .section-title{font-size:clamp(1.9rem,3.8vw,2.9rem);font-weight:600;color:var(--green-deep);line-height:1.2;margin-bottom:1.25rem;}
+    .section-title.light{color:var(--white);}
+    .section-lead{font-size:1rem;color:var(--text-mid);line-height:1.8;}
+    .divider-gold{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin:1.25rem 0;}
+    .btn-gold{background:var(--gold);color:var(--green-deep);border:none;padding:.85rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;cursor:pointer;}
+    .btn-gold:hover{background:var(--gold-light);color:var(--green-deep);transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,168,76,.4);}
+
+    /* ── FILTER BAR ── */
+    .filter-section{background:var(--off-white);padding:2.5rem 0;border-bottom:1px solid rgba(0,0,0,.06);}
+    .filter-bar{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;}
+    .filter-btn{background:var(--white);color:var(--text-mid);border:1px solid rgba(0,0,0,.1);padding:.55rem 1.4rem;font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:30px;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;}
+    .filter-btn:hover{border-color:var(--green-mid);color:var(--green-mid);}
+    .filter-btn.active{background:var(--green-deep);color:var(--white);border-color:var(--green-deep);}
+
+    /* ── STATS STRIP ── */
+    .stats-strip{background:var(--gold);padding:50px 0;}
+    .stat-block{text-align:center;}
+    .stat-block .num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--green-deep);line-height:1;}
+    .stat-block .lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(13,51,32,.7);margin-top:.4rem;}
+
+    /* ── FEATURED PROJECT ── */
+    .featured-section{padding:100px 0;background:var(--white);}
+    .featured-card{border-radius:8px;overflow:hidden;box-shadow:0 15px 60px rgba(0,0,0,.1);display:flex;flex-wrap:wrap;}
+    .featured-image{flex:0 0 55%;position:relative;min-height:440px;}
+    .featured-image img{width:100%;height:100%;object-fit:cover;display:block;}
+    .featured-badge{position:absolute;top:1.5rem;left:1.5rem;background:var(--gold);color:var(--green-deep);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:2px;}
+    .featured-info{flex:1;min-width:280px;padding:3rem;background:var(--green-deep);display:flex;flex-direction:column;justify-content:center;}
+    .featured-tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+    .featured-title{font-size:2.2rem;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:1rem;}
+    .featured-desc{font-size:.9rem;color:rgba(255,255,255,.72);line-height:1.8;margin-bottom:1.75rem;}
+    .featured-meta{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.75rem;}
+    .meta-item{display:flex;align-items:center;gap:8px;font-size:.82rem;color:rgba(255,255,255,.65);}
+    .meta-item i{color:var(--gold);font-size:.85rem;}
+    .featured-specs{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.75rem;}
+    .spec-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.75rem 1rem;}
+    .spec-label{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.2rem;}
+    .spec-value{font-size:.92rem;font-weight:500;color:var(--white);}
+
+    /* ── PROJECT GRID ── */
+    .grid-section{padding:80px 0;background:var(--off-white);}
+    .project-card{border-radius:6px;overflow:hidden;position:relative;height:320px;cursor:pointer;display:block;}
+    .project-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;display:block;}
+    .project-card:hover img{transform:scale(1.07);}
+    .project-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,51,32,.92) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.75rem;transition:all .3s;}
+    .project-type{display:inline-block;background:var(--gold);color:var(--green-deep);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:.65rem;}
+    .project-card h4{font-size:1.4rem;color:var(--white);margin-bottom:.3rem;line-height:1.2;}
+    .project-location{font-size:.8rem;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:5px;}
+    .project-location i{color:var(--gold);font-size:.75rem;}
+    .project-hover-info{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(13,51,32,.92);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;opacity:0;transition:opacity .35s;text-align:center;}
+    .project-card:hover .project-hover-info{opacity:1;}
+    .hover-title{font-size:1.4rem;color:var(--gold-light);margin-bottom:.75rem;}
+    .hover-desc{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:1.25rem;}
+    .hover-btn{background:var(--gold);color:var(--green-deep);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.4rem;border-radius:3px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .2s;}
+    .hover-btn:hover{background:var(--gold-light);color:var(--green-deep);}
+
+    /* ── MANAGED PROPERTIES ── */
+    .managed-section{padding:100px 0;background:var(--white);}
+    .managed-card{background:var(--off-white);border-radius:6px;overflow:hidden;transition:all .3s;border:1px solid rgba(0,0,0,.07);height:100%;}
+    .managed-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,.09);}
+    .managed-img{height:210px;overflow:hidden;position:relative;}
+    .managed-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+    .managed-card:hover .managed-img img{transform:scale(1.05);}
+    .managed-status{position:absolute;top:1rem;right:1rem;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;}
+    .status-managed{background:var(--green-mid);color:var(--white);}
+    .status-sold{background:var(--gold);color:var(--green-deep);}
+    .status-available{background:#2196F3;color:var(--white);}
+    .managed-body{padding:1.5rem;}
+    .managed-type{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;}
+    .managed-title{font-size:1.3rem;color:var(--green-deep);margin-bottom:.4rem;}
+    .managed-location{font-size:.82rem;color:var(--text-light);display:flex;align-items:center;gap:5px;margin-bottom:1rem;}
+    .managed-location i{color:var(--gold);font-size:.75rem;}
+    .managed-features{display:flex;gap:1rem;flex-wrap:wrap;padding-top:.75rem;border-top:1px solid rgba(0,0,0,.07);}
+    .managed-feat{font-size:.78rem;color:var(--text-mid);display:flex;align-items:center;gap:5px;}
+    .managed-feat i{color:var(--green-mid);font-size:.8rem;}
+
+    /* ── CONSTRUCTION WORKS ── */
+    .construction-section{padding:100px 0;background:var(--green-deep);position:relative;overflow:hidden;}
+    .construction-section::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=1200&q=50') center/cover;opacity:.07;}
+    .construction-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;overflow:hidden;transition:all .3s;height:100%;}
+    .construction-card:hover{background:rgba(255,255,255,.1);border-color:rgba(201,168,76,.35);transform:translateY(-5px);}
+    .construction-img{height:200px;overflow:hidden;}
+    .construction-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+    .construction-card:hover .construction-img img{transform:scale(1.05);}
+    .construction-body{padding:1.5rem;}
+    .construction-tag{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;}
+    .construction-title{font-size:1.3rem;color:var(--white);margin-bottom:.5rem;}
+    .construction-desc{font-size:.85rem;color:rgba(255,255,255,.62);line-height:1.7;margin-bottom:1rem;}
+    .construction-progress{margin-bottom:.5rem;}
+    .progress-label{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.55);margin-bottom:.4rem;}
+    .progress{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;}
+    .progress-bar{background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;}
+
+    /* ── BEFORE / AFTER ── */
+    .beforeafter-section{padding:100px 0;background:var(--off-white);}
+    .ba-card{border-radius:8px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1);}
+    .ba-images{display:grid;grid-template-columns:1fr 1fr;position:relative;}
+    .ba-side{position:relative;overflow:hidden;}
+    .ba-side img{width:100%;height:260px;object-fit:cover;display:block;}
+    .ba-label{position:absolute;top:1rem;left:1rem;background:var(--green-deep);color:var(--white);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:2px;}
+    .ba-label.after{background:var(--gold);color:var(--green-deep);}
+    .ba-divider{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:3px;background:var(--white);z-index:2;}
+    .ba-divider-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 4px 15px rgba(0,0,0,.2);}
+    .ba-divider-icon i{color:var(--green-deep);font-size:.9rem;}
+    .ba-info{padding:1.5rem;background:var(--white);}
+    .ba-title{font-size:1.25rem;color:var(--green-deep);margin-bottom:.3rem;}
+    .ba-meta{font-size:.82rem;color:var(--text-light);}
+
+    /* ── FLOATING / FOOTER ── */
+    .floating-buttons{position:fixed;bottom:2rem;right:2rem;display:flex;flex-direction:column;gap:.75rem;z-index:999;}
+    .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:all .25s;}
+    .float-btn:hover{transform:scale(1.1);}
+    .float-whatsapp{background:#25D366;color:var(--white);}
+    .float-call{background:var(--gold);color:var(--green-deep);}
+    footer{background:var(--green-deep);color:rgba(255,255,255,.75);padding:70px 0 0;}
+    .footer-heading{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:1.25rem;font-weight:600;}
+    .footer-links{list-style:none;padding:0;}
+    .footer-links li{margin-bottom:.5rem;}
+    .footer-links a{color:rgba(255,255,255,.58);text-decoration:none;font-size:.85rem;display:flex;align-items:center;gap:8px;transition:color .2s;}
+    .footer-links a i{font-size:.6rem;color:var(--gold);}
+    .footer-links a:hover{color:var(--gold-light);}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem;font-size:.85rem;color:rgba(255,255,255,.6);}
+    .footer-contact-item i{color:var(--gold);margin-top:3px;flex-shrink:0;width:16px;}
+    .footer-desc{font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6);margin:1rem 0 1.5rem;max-width:280px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:all .2s;}
+    .social-btn:hover{background:var(--gold);color:var(--green-deep);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:1.25rem 0;margin-top:3rem;}
+    .footer-bottom-text{font-size:.78rem;color:rgba(255,255,255,.4);}
+    .footer-bottom-text a{color:var(--gold);text-decoration:none;}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+
+    @media(max-width:991px){.featured-image{flex:0 0 100%;min-height:280px;}.featured-info{flex:0 0 100%;}.ba-side img{height:180px;}}
+    @media(max-width:576px){.ba-images{grid-template-columns:1fr;}.ba-divider{display:none;}}
+  </style>
+</head>
+<body>
+
+<!-- ══════ NAVBAR ══════ -->
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="brand-logo">U</div>
+      <div class="brand-text">
+        <span class="brand-name">UNEEK</span>
+        <span class="brand-tagline">Property Management & Real Estate</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════ PAGE HERO ══════ -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb-bar">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Projects & Portfolio</span>
+    </div>
+    <h1>Our <em>Projects</em><br/>&amp; Portfolio</h1>
+    <p class="page-hero-sub">A showcase of completed builds, managed properties, and transformation projects across Greater Accra and beyond.</p>
+  </div>
+  <div class="hero-bottom-bar"></div>
+</section>
+
+<!-- ══════ FILTER BAR ══════ -->
+<div class="filter-section">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="residential">Residential</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="construction">Construction</button>
+      <button class="filter-btn" data-filter="managed">Managed Properties</button>
+      <button class="filter-btn" data-filter="renovation">Renovation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ STATS STRIP ══════ -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="row g-4 justify-content-center text-center">
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">40+</div><div class="lbl">Completed Projects</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">150+</div><div class="lbl">Properties Managed</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">25+</div><div class="lbl">Construction Works</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">100%</div><div class="lbl">Client Satisfaction</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FEATURED PROJECT ══════ -->
+<section class="featured-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow justify-content-center">Spotlight</div>
+        <h2 class="section-title">Featured Project</h2>
+        <div class="divider-gold mx-auto"></div>
+      </div>
+    </div>
+    <div class="featured-card reveal">
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80" alt="Featured Project" />
+        <div class="featured-badge">⭐ Featured</div>
+      </div>
+      <div class="featured-info">
+        <div class="featured-tag">Residential · Completed</div>
+        <div class="featured-title">Lakeside Luxury<br/>Residential Complex</div>
+        <p class="featured-desc">A premium residential development comprising 12 fully-fitted apartments with modern finishes, landscaped grounds, secure parking, and 24-hour security — delivered to the highest standards of Ghanaian residential construction.</p>
+        <div class="featured-meta">
+          <div class="meta-item"><i class="fas fa-map-marker-alt"></i> East Legon, Accra</div>
+          <div class="meta-item"><i class="fas fa-calendar-alt"></i> Completed 2023</div>
+          <div class="meta-item"><i class="fas fa-home"></i> 12 Units</div>
+        </div>
+        <div class="featured-specs">
+          <div class="spec-item"><div class="spec-label">Project Type</div><div class="spec-value">Residential Complex</div></div>
+          <div class="spec-item"><div class="spec-label">Total Units</div><div class="spec-value">12 Apartments</div></div>
+          <div class="spec-item"><div class="spec-label">Duration</div><div class="spec-value">18 Months</div></div>
+          <div class="spec-item"><div class="spec-label">Status</div><div class="spec-value">Fully Occupied</div></div>
+        </div>
+        <a href="contact.html" class="btn-gold" style="align-self:flex-start;">Enquire About This Project <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ COMPLETED PROJECTS GRID ══════ -->
+<section class="grid-section">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5 reveal">
+      <div class="col-lg-6">
+        <div class="section-eyebrow">Portfolio</div>
+        <h2 class="section-title">Completed Projects</h2>
+        <div class="divider-gold"></div>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <p style="font-size:.88rem;color:var(--text-light);">Hover over any project to learn more</p>
+      </div>
+    </div>
+    <div class="row g-4" id="projectsGrid">
+
+      <!-- Project 1 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="residential">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80" alt="Executive Villa" />
+          <div class="project-overlay">
+            <span class="project-type">Residential</span>
+            <h4>Executive Villa, Airport Hills</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Airport Hills, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Executive Villa</div>
+            <p class="hover-desc">5-bedroom luxury villa with private pool, landscaped gardens, and smart-home features. Built and managed by Uneek.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="commercial">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80" alt="Commercial Office" />
+          <div class="project-overlay">
+            <span class="project-type">Commercial</span>
+            <h4>Commercial Office Block</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Ridge, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Commercial Office Block</div>
+            <p class="hover-desc">A modern 3-storey commercial office building with open-plan floors, conference facilities, and secure parking.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="construction">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=700&q=80" alt="New Build" />
+          <div class="project-overlay">
+            <span class="project-type">Construction</span>
+            <h4>Residential New Build, Tema</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Community 25, Tema</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Tema New Build</div>
+            <p class="hover-desc">3-bedroom family home constructed from foundation to finishing. Delivered on time and under budget.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="residential">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80" alt="Apartment Block" />
+          <div class="project-overlay">
+            <span class="project-type">Residential</span>
+            <h4>Apartment Block, Cantonments</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Cantonments, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Cantonments Apartments</div>
+            <p class="hover-desc">8-unit apartment block currently under full property management — 100% occupancy maintained for 2+ years.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="renovation">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=80" alt="Kitchen Renovation" />
+          <div class="project-overlay">
+            <span class="project-type">Renovation</span>
+            <h4>Full Interior Renovation</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Labone, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Labone Interior Renovation</div>
+            <p class="hover-desc">Complete gut-renovation of a 4-bedroom home — new kitchen, bathrooms, flooring, and electrical throughout.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="commercial">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=700&q=80" alt="Retail Space" />
+          <div class="project-overlay">
+            <span class="project-type">Commercial</span>
+            <h4>Retail &amp; Mixed-Use Space</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Osu, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Osu Mixed-Use Development</div>
+            <p class="hover-desc">Ground-floor retail units with 4 residential apartments above. Full leasing and management by Uneek.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 7 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="construction">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Compound House" />
+          <div class="project-overlay">
+            <span class="project-type">Construction</span>
+            <h4>Compound House, Adenta</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Adenta, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Adenta Compound House</div>
+            <p class="hover-desc">Traditional compound house rebuilt with modern standards — 6 self-contained units, new plumbing &amp; electrical.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 8 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="residential">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=700&q=80" alt="Townhouse" />
+          <div class="project-overlay">
+            <span class="project-type">Residential</span>
+            <h4>Townhouse Development</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Spintex Road, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Spintex Townhouses</div>
+            <p class="hover-desc">Row of 6 modern townhouses sold off-plan and fully leased through Uneek's real estate agency arm.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 9 -->
+      <div class="col-md-6 col-lg-4 reveal project-item" data-category="managed">
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=700&q=80" alt="Managed Estate" />
+          <div class="project-overlay">
+            <span class="project-type">Managed Property</span>
+            <h4>Residential Estate Management</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt"></i> Trasacco Valley, Accra</div>
+          </div>
+          <div class="project-hover-info">
+            <div class="hover-title">Estate Management</div>
+            <p class="hover-desc">Full-service management of a 20-unit gated residential estate — maintenance, security coordination &amp; rent collection.</p>
+            <a href="contact.html" class="hover-btn"><i class="fas fa-info-circle"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row -->
+  </div>
+</section>
+
+<!-- ══════ MANAGED PROPERTIES SHOWCASE ══════ -->
+<section class="managed-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow justify-content-center">Property Management</div>
+        <h2 class="section-title">Properties Under Management</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="section-lead mx-auto">A selection of properties currently being managed by Uneek on behalf of our clients.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <!-- Managed 1 -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="managed-card">
+          <div class="managed-img">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=75" alt="Managed Property" />
+            <span class="managed-status status-managed">Managed</span>
+          </div>
+          <div class="managed-body">
+            <div class="managed-type">Residential · Apartment</div>
+            <div class="managed-title">3-Bedroom Apartment</div>
+            <div class="managed-location"><i class="fas fa-map-marker-alt"></i> East Legon, Accra</div>
+            <div class="managed-features">
+              <div class="managed-feat"><i class="fas fa-bed"></i> 3 Beds</div>
+              <div class="managed-feat"><i class="fas fa-bath"></i> 2 Baths</div>
+              <div class="managed-feat"><i class="fas fa-car"></i> Parking</div>
+              <div class="managed-feat"><i class="fas fa-shield-alt"></i> Security</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Managed 2 -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="managed-card">
+          <div class="managed-img">
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=600&q=75" alt="Managed Property" />
+            <span class="managed-status status-available">Available</span>
+          </div>
+          <div class="managed-body">
+            <div class="managed-type">Commercial · Office</div>
+            <div class="managed-title">Executive Office Suite</div>
+            <div class="managed-location"><i class="fas fa-map-marker-alt"></i> Airport City, Accra</div>
+            <div class="managed-features">
+              <div class="managed-feat"><i class="fas fa-building"></i> 2nd Floor</div>
+              <div class="managed-feat"><i class="fas fa-wifi"></i> Fibre</div>
+              <div class="managed-feat"><i class="fas fa-car"></i> Parking</div>
+              <div class="managed-feat"><i class="fas fa-bolt"></i> Backup Power</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Managed 3 -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="managed-card">
+          <div class="managed-img">
+            <img src="https://images.unsplash.com/photo-1582407947304-fd86f28f3e5a?w=600&q=75" alt="Managed Property" />
+            <span class="managed-status status-managed">Managed</span>
+          </div>
+          <div class="managed-body">
+            <div class="managed-type">Residential · Villa</div>
+            <div class="managed-title">5-Bedroom Executive Villa</div>
+            <div class="managed-location"><i class="fas fa-map-marker-alt"></i> Trasacco Valley, Accra</div>
+            <div class="managed-features">
+              <div class="managed-feat"><i class="fas fa-bed"></i> 5 Beds</div>
+              <div class="managed-feat"><i class="fas fa-swimming-pool"></i> Pool</div>
+              <div class="managed-feat"><i class="fas fa-car"></i> 3 Cars</div>
+              <div class="managed-feat"><i class="fas fa-shield-alt"></i> Gated</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <a href="contact.html" class="btn-gold">Enquire About a Property <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CONSTRUCTION WORKS ══════ -->
+<section class="construction-section">
+  <div class="container position-relative">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow light justify-content-center">Building & Construction</div>
+        <h2 class="section-title light">Construction Works</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p style="font-size:1rem;color:rgba(255,255,255,.7);line-height:1.8;max-width:520px;margin:0 auto;">From new builds to renovations — our construction division delivers quality you can see.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <!-- Construction 1 -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="construction-card">
+          <div class="construction-img">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=75" alt="Construction" />
+          </div>
+          <div class="construction-body">
+            <div class="construction-tag">New Build · Completed</div>
+            <div class="construction-title">4-Bedroom Family Home</div>
+            <p class="construction-desc">Full construction from foundation to handover including electrical, plumbing, and interior finishing.</p>
+            <div class="construction-progress">
+              <div class="progress-label"><span>Project Progress</span><span>100%</span></div>
+              <div class="progress"><div class="progress-bar" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Construction 2 -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="construction-card">
+          <div class="construction-img">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=75" alt="Construction" />
+          </div>
+          <div class="construction-body">
+            <div class="construction-tag">Commercial · Completed</div>
+            <div class="construction-title">Office &amp; Retail Block</div>
+            <p class="construction-desc">2-storey mixed-use building with retail ground floor and 4 office suites above, built in 14 months.</p>
+            <div class="construction-progress">
+              <div class="progress-label"><span>Project Progress</span><span>100%</span></div>
+              <div class="progress"><div class="progress-bar" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Construction 3 — Ongoing -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="construction-card">
+          <div class="construction-img">
+            <img src="https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?w=600&q=75" alt="Construction" />
+          </div>
+          <div class="construction-body">
+            <div class="construction-tag">Renovation · In Progress</div>
+            <div class="construction-title">Estate Renovation Project</div>
+            <p class="construction-desc">Major renovation of a 10-unit residential estate — structural repairs, new roofing, plumbing &amp; painting.</p>
+            <div class="construction-progress">
+              <div class="progress-label"><span>Project Progress</span><span>72%</span></div>
+              <div class="progress"><div class="progress-bar" style="width:72%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ BEFORE & AFTER ══════ -->
+<section class="beforeafter-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow justify-content-center">Transformations</div>
+        <h2 class="section-title">Before &amp; After</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="section-lead mx-auto">Real results. See how our renovation and construction team transforms properties from tired to outstanding.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <!-- BA 1 -->
+      <div class="col-md-6 reveal">
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side">
+              <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&q=70" alt="Before" />
+              <div class="ba-label">Before</div>
+            </div>
+            <div class="ba-side">
+              <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500&q=70" alt="After" />
+              <div class="ba-label after">After</div>
+            </div>
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="fas fa-arrows-left-right"></i></div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Kitchen Renovation — Labone</div>
+            <div class="ba-meta"><i class="fas fa-clock me-1" style="color:var(--gold)"></i> 3-Week Turnaround · Full Gut Renovation</div>
+          </div>
+        </div>
+      </div>
+      <!-- BA 2 -->
+      <div class="col-md-6 reveal">
+        <div class="ba-card">
+          <div class="ba-images">
+            <div class="ba-side">
+              <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=500&q=70" alt="Before" />
+              <div class="ba-label">Before</div>
+            </div>
+            <div class="ba-side">
+              <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=500&q=70" alt="After" />
+              <div class="ba-label after">After</div>
+            </div>
+            <div class="ba-divider">
+              <div class="ba-divider-icon"><i class="fas fa-arrows-left-right"></i></div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Full Property Refurbishment — Osu</div>
+            <div class="ba-meta"><i class="fas fa-clock me-1" style="color:var(--gold)"></i> 6-Week Project · Interior &amp; Exterior Works</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA ══════ -->
+<section style="background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);padding:80px 0;">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 reveal">
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--green-deep);margin-bottom:1rem;">Have a Project in Mind?</h2>
+        <p style="font-size:.95rem;color:rgba(13,51,32,.75);max-width:500px;line-height:1.75;">Whether it's a new build, a renovation, or a property you'd like us to manage — our team is ready to help. Let's build something great together.</p>
+      </div>
+      <div class="col-lg-5 reveal">
+        <div class="d-flex flex-wrap gap-3 justify-content-lg-end">
+          <a href="contact.html" style="background:var(--green-deep);color:var(--white);padding:.9rem 2.2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <i class="fas fa-envelope"></i> Start a Project
+          </a>
+          <a href="https://wa.me/233000000000" style="background:#25D366;color:var(--white);padding:.9rem 2.2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="text-decoration:none;">
+          <div class="brand-logo">U</div>
+          <div class="brand-text ms-3">
+            <span class="brand-name">UNEEK</span>
+            <span class="brand-tagline">Property Management & Real Estate</span>
+          </div>
+        </a>
+        <p class="footer-desc">Ghana's trusted partner for property management, real estate agency, construction, and cleaning services.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-heading">Our Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Tenant Screening</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Rent Collection</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Property Maintenance</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Financial Reporting</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Real Estate Agency</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Building & Construction</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Cleaning Services</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-heading">Contact Us</div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> [Address Placeholder], Accra, Ghana</div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i> [Phone Placeholder]</div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i> [Email Placeholder]</div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i> [WhatsApp Placeholder]</div>
+        <div class="footer-contact-item"><i class="far fa-clock"></i> Mon–Sat: 8:00am – 6:00pm</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6"><div class="footer-bottom-text">© 2025 Uneek Property Management & Real Estate. All rights reserved.</div></div>
+        <div class="col-md-6 text-md-end"><div class="footer-bottom-text"><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING BUTTONS ── -->
+<div class="floating-buttons">
+  <a href="https://wa.me/233000000000" target="_blank" class="float-btn float-whatsapp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+233000000000" class="float-btn float-call"><i class="fas fa-phone"></i></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Sticky nav
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectItems = document.querySelectorAll('.project-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projectItems.forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

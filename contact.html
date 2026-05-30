@@ -1,16 +1,719 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | Uneek Property Management & Real Estate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-deep:  #0d3320;
+      --green-mid:   #1a5c38;
+      --green-light: #2a7a4e;
+      --gold:        #c9a84c;
+      --gold-light:  #e8c96a;
+      --gold-pale:   #f5e9c4;
+      --white:       #ffffff;
+      --off-white:   #f9f7f2;
+      --text-dark:   #1a1a1a;
+      --text-mid:    #444444;
+      --text-light:  #777777;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden;}
+    h1,h2,h3,h4,h5{font-family:'Cormorant Garamond',serif;}
+
+    /* ── NAVBAR ── */
+    .navbar{background:transparent;padding:1.4rem 0;position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .4s;}
+    .navbar.scrolled{background:var(--green-deep);padding:.9rem 0;box-shadow:0 4px 30px rgba(0,0,0,.3);}
+    .navbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .brand-logo{width:46px;height:46px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--green-deep);flex-shrink:0;}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1;}
+    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:.04em;}
+    .brand-tagline{font-size:.65rem;color:var(--gold-light);letter-spacing:.15em;text-transform:uppercase;}
+    .navbar-nav .nav-link{color:rgba(255,255,255,.88)!important;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem!important;transition:color .2s;position:relative;}
+    .navbar-nav .nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;right:50%;height:2px;background:var(--gold);transition:all .3s;}
+    .navbar-nav .nav-link:hover{color:var(--gold-light)!important;}
+    .navbar-nav .nav-link:hover::after,.navbar-nav .nav-link.active::after{left:1rem;right:1rem;}
+    .navbar-nav .nav-link.active{color:var(--gold-light)!important;}
+    .nav-cta{background:var(--gold)!important;color:var(--green-deep)!important;border-radius:4px;padding:.5rem 1.2rem!important;font-weight:600!important;margin-left:.5rem;}
+    .nav-cta:hover{background:var(--gold-light)!important;}
+    .navbar-toggler{border-color:rgba(255,255,255,.3);}
+    .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+
+    /* ── PAGE HERO ── */
+    .page-hero{min-height:50vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+    .page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1800&q=80') center/cover no-repeat;}
+    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(13,51,32,.96) 0%,rgba(13,51,32,.75) 60%,rgba(13,51,32,.5) 100%);}
+    .page-hero-content{position:relative;z-index:2;padding-top:120px;padding-bottom:60px;}
+    .breadcrumb-bar{display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.2rem;}
+    .breadcrumb-bar a{color:var(--gold-light);text-decoration:none;}
+    .breadcrumb-bar i{font-size:.55rem;}
+    .page-hero h1{font-size:clamp(2.6rem,5.5vw,4.5rem);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:1rem;animation:fadeUp .8s .3s both;}
+    .page-hero h1 em{color:var(--gold-light);font-style:normal;}
+    .page-hero-sub{font-size:1rem;color:rgba(255,255,255,.72);max-width:520px;line-height:1.8;animation:fadeUp .8s .5s both;}
+    .hero-bottom-bar{position:absolute;bottom:0;left:0;right:0;background:var(--gold);height:5px;}
+
+    /* ── SHARED ── */
+    .section-eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;display:flex;align-items:center;gap:10px;}
+    .section-eyebrow::before{content:'';display:block;width:30px;height:2px;background:var(--gold);}
+    .section-title{font-size:clamp(1.9rem,3.8vw,2.9rem);font-weight:600;color:var(--green-deep);line-height:1.2;margin-bottom:1.25rem;}
+    .section-title.light{color:var(--white);}
+    .divider-gold{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin:1.25rem 0;}
+    .section-lead{font-size:1rem;color:var(--text-mid);line-height:1.8;}
+
+    /* ── QUICK CONTACT STRIP ── */
+    .quick-strip{background:var(--green-deep);padding:0;}
+    .quick-item{display:flex;align-items:center;gap:1.25rem;padding:1.75rem 2rem;border-right:1px solid rgba(255,255,255,.08);transition:background .25s;cursor:pointer;text-decoration:none;}
+    .quick-item:last-child{border-right:none;}
+    .quick-item:hover{background:rgba(255,255,255,.05);}
+    .quick-icon{width:50px;height:50px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+    .qi-phone{background:rgba(201,168,76,.15);}
+    .qi-phone i{color:var(--gold);}
+    .qi-whatsapp{background:rgba(37,211,102,.15);}
+    .qi-whatsapp i{color:#25D366;}
+    .qi-email{background:rgba(255,255,255,.08);}
+    .qi-email i{color:var(--gold-light);}
+    .qi-location{background:rgba(201,168,76,.1);}
+    .qi-location i{color:var(--gold);}
+    .quick-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.2rem;}
+    .quick-value{font-size:.92rem;font-weight:500;color:var(--white);}
+
+    /* ── MAIN CONTACT SECTION ── */
+    .contact-section{padding:100px 0;background:var(--off-white);}
+
+    /* ── CONTACT FORM ── */
+    .form-wrap{background:var(--white);border-radius:8px;padding:3rem;box-shadow:0 10px 50px rgba(0,0,0,.07);}
+    .form-label-custom{font-size:.72rem;font-weight:600;color:var(--text-mid);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;display:block;}
+    .form-control-custom{width:100%;padding:.8rem 1rem;border:1px solid #e0e0e0;border-radius:4px;font-size:.9rem;font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--off-white);outline:none;transition:all .25s;}
+    .form-control-custom:focus{border-color:var(--green-mid);background:var(--white);box-shadow:0 0 0 3px rgba(26,92,56,.08);}
+    .form-control-custom::placeholder{color:#aaa;}
+    textarea.form-control-custom{resize:vertical;min-height:140px;}
+    select.form-control-custom{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23777' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer;}
+    .radio-group{display:flex;flex-wrap:wrap;gap:.75rem;}
+    .radio-pill input{display:none;}
+    .radio-pill label{padding:.45rem 1.1rem;border:1px solid #ddd;border-radius:30px;font-size:.78rem;cursor:pointer;transition:all .2s;color:var(--text-mid);user-select:none;}
+    .radio-pill input:checked + label{background:var(--green-deep);color:var(--white);border-color:var(--green-deep);}
+    .radio-pill label:hover{border-color:var(--green-mid);color:var(--green-mid);}
+    .btn-submit{background:var(--green-deep);color:var(--white);border:none;padding:1rem 2.5rem;font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all .3s;font-family:'DM Sans',sans-serif;width:100%;justify-content:center;}
+    .btn-submit:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 10px 30px rgba(13,51,32,.25);}
+    .btn-submit .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);border-radius:50%;animation:spin .7s linear infinite;display:none;}
+    .btn-submit.loading .btn-text{display:none;}
+    .btn-submit.loading .spinner{display:block;}
+
+    /* Success message */
+    .success-msg{display:none;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--white);padding:2rem;border-radius:6px;text-align:center;}
+    .success-msg i{font-size:2.5rem;color:var(--gold);margin-bottom:1rem;display:block;}
+    .success-msg h4{font-size:1.6rem;margin-bottom:.5rem;}
+    .success-msg p{font-size:.9rem;color:rgba(255,255,255,.75);}
+
+    /* ── CONTACT INFO SIDEBAR ── */
+    .info-card{background:var(--white);border-radius:8px;padding:2.5rem;box-shadow:0 10px 50px rgba(0,0,0,.07);height:100%;}
+    .info-item{display:flex;gap:1.25rem;align-items:flex-start;padding:1.25rem 0;border-bottom:1px solid rgba(0,0,0,.06);}
+    .info-item:last-of-type{border-bottom:none;}
+    .info-icon{width:46px;height:46px;border-radius:8px;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .info-icon i{color:var(--gold);font-size:1.1rem;}
+    .info-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:.3rem;}
+    .info-value{font-size:.92rem;color:var(--text-dark);font-weight:500;line-height:1.5;}
+    .info-value a{color:var(--green-mid);text-decoration:none;}
+    .info-value a:hover{color:var(--gold);}
+
+    /* Hours table */
+    .hours-table{width:100%;font-size:.85rem;}
+    .hours-table tr td{padding:.35rem 0;color:var(--text-mid);}
+    .hours-table tr td:last-child{text-align:right;font-weight:500;color:var(--green-mid);}
+    .hours-table tr.closed td:last-child{color:#e57373;}
+
+    /* Social row */
+    .social-row{display:flex;gap:.75rem;margin-top:1.5rem;}
+    .social-link{width:42px;height:42px;border-radius:8px;background:var(--off-white);border:1px solid rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;color:var(--green-mid);font-size:1rem;text-decoration:none;transition:all .2s;}
+    .social-link:hover{background:var(--green-deep);color:var(--gold);}
+    .social-link.wa:hover{background:#25D366;color:var(--white);}
+
+    /* ── MAP SECTION ── */
+    .map-section{padding:0;}
+    .map-wrapper{position:relative;}
+    .map-wrapper iframe{width:100%;height:480px;border:0;display:block;filter:grayscale(15%);}
+    .map-overlay-card{position:absolute;top:2.5rem;left:2.5rem;background:var(--white);border-radius:8px;padding:1.75rem 2rem;box-shadow:0 10px 40px rgba(0,0,0,.15);max-width:300px;z-index:10;}
+    .map-overlay-card h4{font-size:1.3rem;color:var(--green-deep);margin-bottom:.75rem;}
+    .map-detail{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;color:var(--text-mid);margin-bottom:.6rem;}
+    .map-detail i{color:var(--gold);margin-top:3px;flex-shrink:0;width:14px;}
+    .btn-directions{display:inline-flex;align-items:center;gap:8px;margin-top:1rem;background:var(--green-deep);color:var(--white);padding:.6rem 1.4rem;border-radius:4px;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+    .btn-directions:hover{background:var(--green-mid);color:var(--white);}
+
+    /* ── FAQ SECTION ── */
+    .faq-section{padding:100px 0;background:var(--white);}
+    .accordion-item{border:1px solid rgba(0,0,0,.07)!important;border-radius:6px!important;margin-bottom:.75rem;overflow:hidden;}
+    .accordion-button{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--green-deep)!important;background:var(--white)!important;padding:1.25rem 1.5rem;font-weight:600;}
+    .accordion-button:not(.collapsed){color:var(--green-mid)!important;background:var(--off-white)!important;box-shadow:none!important;}
+    .accordion-button::after{filter:none;}
+    .accordion-button:focus{box-shadow:none!important;}
+    .accordion-body{font-size:.9rem;color:var(--text-mid);line-height:1.8;padding:1rem 1.5rem 1.5rem;}
+
+    /* ── CTA BAND ── */
+    .cta-band{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);padding:80px 0;}
+
+    /* ── FLOATING / FOOTER ── */
+    .floating-buttons{position:fixed;bottom:2rem;right:2rem;display:flex;flex-direction:column;gap:.75rem;z-index:999;}
+    .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:all .25s;}
+    .float-btn:hover{transform:scale(1.1);}
+    .float-whatsapp{background:#25D366;color:var(--white);}
+    .float-call{background:var(--gold);color:var(--green-deep);}
+    footer{background:var(--green-deep);color:rgba(255,255,255,.75);padding:70px 0 0;}
+    .footer-heading{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:1.25rem;font-weight:600;}
+    .footer-links{list-style:none;padding:0;}
+    .footer-links li{margin-bottom:.5rem;}
+    .footer-links a{color:rgba(255,255,255,.58);text-decoration:none;font-size:.85rem;display:flex;align-items:center;gap:8px;transition:color .2s;}
+    .footer-links a i{font-size:.6rem;color:var(--gold);}
+    .footer-links a:hover{color:var(--gold-light);}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem;font-size:.85rem;color:rgba(255,255,255,.6);}
+    .footer-contact-item i{color:var(--gold);margin-top:3px;flex-shrink:0;width:16px;}
+    .footer-desc{font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6);margin:1rem 0 1.5rem;max-width:280px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:all .2s;}
+    .social-btn:hover{background:var(--gold);color:var(--green-deep);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:1.25rem 0;margin-top:3rem;}
+    .footer-bottom-text{font-size:.78rem;color:rgba(255,255,255,.4);}
+    .footer-bottom-text a{color:var(--gold);text-decoration:none;}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+
+    @media(max-width:991px){
+      .quick-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
+      .map-overlay-card{position:relative;top:auto;left:auto;max-width:100%;border-radius:0;}
+      .map-wrapper iframe{height:350px;}
+    }
+    @media(max-width:576px){.form-wrap{padding:1.75rem;}}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Contact Us</h1>
-    </header>
-    <main>
-        <p>Get in touch with us!</p>
-    </main>
+
+<!-- ══════ NAVBAR ══════ -->
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="brand-logo">U</div>
+      <div class="brand-text">
+        <span class="brand-name">UNEEK</span>
+        <span class="brand-tagline">Property Management & Real Estate</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link active nav-cta" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════ PAGE HERO ══════ -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb-bar">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Contact Us</span>
+    </div>
+    <h1>Get In <em>Touch</em></h1>
+    <p class="page-hero-sub">We're ready to help. Whether you're a property owner, tenant, investor, or client — reach out and our team will respond promptly.</p>
+  </div>
+  <div class="hero-bottom-bar"></div>
+</section>
+
+<!-- ══════ QUICK CONTACT STRIP ══════ -->
+<div class="quick-strip">
+  <div class="container-fluid px-0">
+    <div class="row g-0">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <a href="tel:+233000000000" class="quick-item">
+          <div class="quick-icon qi-phone"><i class="fas fa-phone"></i></div>
+          <div>
+            <div class="quick-label">Call Us Directly</div>
+            <div class="quick-value">[Phone Number]</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <a href="https://wa.me/233000000000" target="_blank" class="quick-item">
+          <div class="quick-icon qi-whatsapp"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <div class="quick-label">WhatsApp Chat</div>
+            <div class="quick-value">[WhatsApp Number]</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <a href="mailto:info@uneekproperty.com" class="quick-item">
+          <div class="quick-icon qi-email"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="quick-label">Email Address</div>
+            <div class="quick-value">[Email Address]</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="quick-item">
+          <div class="quick-icon qi-location"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="quick-label">Office Location</div>
+            <div class="quick-value">[Address], Accra</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ MAIN CONTACT SECTION ══════ -->
+<section class="contact-section">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- LEFT: FORM -->
+      <div class="col-lg-7 reveal">
+        <div class="section-eyebrow">Send a Message</div>
+        <h2 class="section-title">Let's Start a<br/>Conversation</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-4">Fill in the form below and a member of our team will get back to you within 24 hours on business days.</p>
+
+        <div class="form-wrap">
+          <!-- Success message (hidden by default) -->
+          <div class="success-msg" id="successMsg">
+            <i class="fas fa-check-circle"></i>
+            <h4>Message Sent!</h4>
+            <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+          </div>
+
+          <div id="contactForm">
+            <!-- Who are you? -->
+            <div class="mb-4">
+              <label class="form-label-custom">I am a *</label>
+              <div class="radio-group">
+                <div class="radio-pill"><input type="radio" name="role" id="r1" value="Property Owner" checked><label for="r1">Property Owner</label></div>
+                <div class="radio-pill"><input type="radio" name="role" id="r2" value="Tenant"><label for="r2">Tenant</label></div>
+                <div class="radio-pill"><input type="radio" name="role" id="r3" value="Investor"><label for="r3">Investor</label></div>
+                <div class="radio-pill"><input type="radio" name="role" id="r4" value="Construction Client"><label for="r4">Construction Client</label></div>
+                <div class="radio-pill"><input type="radio" name="role" id="r5" value="Other"><label for="r5">Other</label></div>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label-custom" for="fullName">Full Name *</label>
+                <input class="form-control-custom" type="text" id="fullName" placeholder="Your full name" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-custom" for="phone">Phone Number *</label>
+                <input class="form-control-custom" type="tel" id="phone" placeholder="+233 XX XXX XXXX" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-custom" for="email">Email Address *</label>
+                <input class="form-control-custom" type="email" id="email" placeholder="your@email.com" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-custom" for="service">Service Interested In</label>
+                <select class="form-control-custom" id="service">
+                  <option value="">Select a service...</option>
+                  <option>Tenant Screening &amp; Leasing</option>
+                  <option>Rent Collection</option>
+                  <option>Property Maintenance</option>
+                  <option>Financial Reporting</option>
+                  <option>Real Estate Agency</option>
+                  <option>Building &amp; Construction</option>
+                  <option>Cleaning Services</option>
+                  <option>General Enquiry</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label-custom" for="subject">Subject *</label>
+                <input class="form-control-custom" type="text" id="subject" placeholder="Brief subject of your message" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label-custom" for="message">Your Message *</label>
+                <textarea class="form-control-custom" id="message" placeholder="Tell us about your property, project, or inquiry in detail..." required></textarea>
+              </div>
+              <div class="col-12">
+                <label class="form-label-custom">How did you hear about us?</label>
+                <select class="form-control-custom" id="source">
+                  <option value="">Select an option...</option>
+                  <option>Google Search</option>
+                  <option>Social Media (Facebook / Instagram)</option>
+                  <option>Referral from a friend</option>
+                  <option>WhatsApp</option>
+                  <option>Roadside Signage</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="col-12 mt-2">
+                <button type="button" class="btn-submit" id="submitBtn" onclick="handleSubmit()">
+                  <span class="btn-text"><i class="fas fa-paper-plane"></i> &nbsp;Send Message</span>
+                  <div class="spinner"></div>
+                </button>
+              </div>
+            </div>
+          </div><!-- /contactForm -->
+        </div><!-- /form-wrap -->
+      </div>
+
+      <!-- RIGHT: INFO SIDEBAR -->
+      <div class="col-lg-5 reveal">
+        <div class="info-card">
+          <div class="section-eyebrow">Contact Details</div>
+          <h3 style="font-size:1.9rem;color:var(--green-deep);margin-bottom:1.5rem;">Our Office</h3>
+
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="info-label">Office Address</div>
+              <div class="info-value">[Street Address Placeholder]<br/>[Area / Suburb], Accra<br/>Ghana</div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="info-label">Phone Numbers</div>
+              <div class="info-value">
+                <a href="tel:+233000000000">[Primary Phone]</a><br/>
+                <a href="tel:+233000000001">[Secondary Phone]</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="info-label">WhatsApp</div>
+              <div class="info-value"><a href="https://wa.me/233000000000" target="_blank">[WhatsApp Number]</a></div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="info-label">Email Address</div>
+              <div class="info-value">
+                <a href="mailto:info@uneekproperty.com">[Email Address]</a><br/>
+                <a href="mailto:support@uneekproperty.com">[Support Email]</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Office Hours -->
+          <div style="margin-top:1.5rem;">
+            <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:8px;">
+              <i class="far fa-clock"></i> Office Hours
+            </div>
+            <table class="hours-table">
+              <tr><td>Monday – Friday</td><td>8:00am – 6:00pm</td></tr>
+              <tr><td>Saturday</td><td>9:00am – 3:00pm</td></tr>
+              <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+              <tr class="closed"><td>Public Holidays</td><td>Closed</td></tr>
+            </table>
+          </div>
+
+          <!-- Social Media -->
+          <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid rgba(0,0,0,.07);">
+            <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:.75rem;">Follow Us</div>
+            <div class="social-row">
+              <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social-link" title="Twitter / X"><i class="fab fa-twitter"></i></a>
+              <a href="https://wa.me/233000000000" class="social-link wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:.75rem;">
+            <a href="tel:+233000000000" style="background:var(--green-deep);color:var(--white);padding:.85rem 1.5rem;border-radius:4px;text-decoration:none;display:flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+            <a href="https://wa.me/233000000000" target="_blank" style="background:#25D366;color:var(--white);padding:.85rem 1.5rem;border-radius:4px;text-decoration:none;display:flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ GOOGLE MAP ══════ -->
+<section class="map-section">
+  <div class="map-wrapper">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.55923854064!2d-0.3069185!3d5.5912572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9084b2b7a773%3A0xbed14ed8650e2dd3!2sAccra%2C%20Ghana!5e0!3m2!1sen!2sgh!4v1699901234567!5m2!1sen!2sgh"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <div class="map-overlay-card">
+      <h4>Find Our Office</h4>
+      <div class="map-detail"><i class="fas fa-map-marker-alt"></i> [Street Address], [Area], Accra, Ghana</div>
+      <div class="map-detail"><i class="fas fa-phone"></i> [Phone Number]</div>
+      <div class="map-detail"><i class="far fa-clock"></i> Mon–Fri: 8am–6pm · Sat: 9am–3pm</div>
+      <a href="https://www.google.com/maps/search/Accra,+Ghana" target="_blank" class="btn-directions">
+        <i class="fas fa-directions"></i> Get Directions
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FAQ ══════ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow justify-content-center">FAQs</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="section-lead mx-auto">Quick answers to the questions we hear most often from property owners, tenants, and investors.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-6 reveal">
+        <div class="accordion" id="faqLeft">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                How do I get started with property management?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqLeft">
+              <div class="accordion-body">Simply contact us via the form, phone, or WhatsApp. We'll schedule a free consultation, assess your property, and walk you through our management packages and fees — no obligation.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                What areas in Ghana do you serve?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+              <div class="accordion-body">We primarily operate in Greater Accra, including East Legon, Cantonments, Airport City, Labone, Osu, Tema, and surrounding areas. Contact us to enquire about other regions.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                How quickly can you find a tenant for my property?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+              <div class="accordion-body">On average we place quality, screened tenants within 2–4 weeks of listing, depending on the property type and location. Our marketing and screening process is thorough but efficient.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                Do you handle emergency maintenance calls?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
+              <div class="accordion-body">Yes. Our maintenance team is available for emergency call-outs. Tenants in managed properties have access to our emergency contact line 7 days a week for urgent issues.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-6 reveal">
+        <div class="accordion" id="faqRight">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                What does your property management fee cover?
+              </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+              <div class="accordion-body">Our management fee covers tenant placement, rent collection, monthly financial reporting, maintenance coordination, and regular property inspections. A full breakdown is provided during consultation.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                Can you help me buy or sell a property?
+              </button>
+            </h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+              <div class="accordion-body">Absolutely. Our real estate agency arm handles property sales, acquisitions, and investment advisory. We can help you find the right property or list yours to the right buyers or tenants.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                Do you offer construction quotes?
+              </button>
+            </h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+              <div class="accordion-body">Yes. Contact us with your project details and we'll arrange a site visit and provide a detailed, no-obligation quote. We handle everything from new builds to renovations.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                How do I report a maintenance issue as a tenant?
+              </button>
+            </h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqRight">
+              <div class="accordion-body">Tenants can report maintenance issues via WhatsApp, phone, or email. We log all requests and coordinate with our maintenance team to resolve issues promptly, keeping you updated throughout.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA BAND ══════ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 reveal">
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--green-deep);margin-bottom:1rem;">Still Have Questions?</h2>
+        <p style="font-size:.95rem;color:rgba(13,51,32,.75);max-width:480px;line-height:1.75;">Our team is ready to help you Monday through Saturday. Don't hesitate — reach out via any channel and we'll get back to you fast.</p>
+      </div>
+      <div class="col-lg-5 reveal">
+        <div class="d-flex flex-wrap gap-3 justify-content-lg-end">
+          <a href="tel:+233000000000" style="background:var(--green-deep);color:var(--white);padding:.9rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <i class="fas fa-phone"></i> Call Now
+          </a>
+          <a href="https://wa.me/233000000000" target="_blank" style="background:#25D366;color:var(--white);padding:.9rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="text-decoration:none;">
+          <div class="brand-logo">U</div>
+          <div class="brand-text ms-3">
+            <span class="brand-name">UNEEK</span>
+            <span class="brand-tagline">Property Management & Real Estate</span>
+          </div>
+        </a>
+        <p class="footer-desc">Ghana's trusted partner for property management, real estate agency, construction, and cleaning services. Excellence in every detail.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-heading">Our Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Tenant Screening</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Rent Collection</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Property Maintenance</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Financial Reporting</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Real Estate Agency</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Building & Construction</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Cleaning Services</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-heading">Contact Us</div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> [Address Placeholder], Accra, Ghana</div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i> [Phone Placeholder]</div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i> [Email Placeholder]</div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i> [WhatsApp Placeholder]</div>
+        <div class="footer-contact-item"><i class="far fa-clock"></i> Mon–Sat: 8:00am – 6:00pm</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6"><div class="footer-bottom-text">© 2025 Uneek Property Management & Real Estate. All rights reserved.</div></div>
+        <div class="col-md-6 text-md-end"><div class="footer-bottom-text"><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING BUTTONS ── -->
+<div class="floating-buttons">
+  <a href="https://wa.me/233000000000" target="_blank" class="float-btn float-whatsapp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+233000000000" class="float-btn float-call"><i class="fas fa-phone"></i></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Sticky nav
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Form submit simulation
+  function handleSubmit() {
+    const name    = document.getElementById('fullName').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !phone || !email || !message) {
+      alert('Please fill in all required fields marked with *');
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('loading');
+
+    setTimeout(() => {
+      btn.classList.remove('loading');
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successMsg').style.display  = 'block';
+    }, 2000);
+  }
+</script>
 </body>
 </html>
