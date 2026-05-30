@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Uneek Property Management & Real Estate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/x-icon" href="images/favicon.png">
+  <style>
+    :root {
+      --green-deep:  #0d3320;
+      --green-mid:   #1a5c38;
+      --green-light: #2a7a4e;
+      --gold:        #c9a84c;
+      --gold-light:  #e8c96a;
+      --gold-pale:   #f5e9c4;
+      --white:       #ffffff;
+      --off-white:   #f9f7f2;
+      --text-dark:   #1a1a1a;
+      --text-mid:    #444444;
+      --text-light:  #777777;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden}
+    h1,h2,h3,h4,h5{font-family:'Cormorant Garamond',serif}
+
+    /* ── NAVBAR ── */
+    .navbar{background:transparent;padding:1.4rem 0;position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .4s}
+    .navbar.scrolled{background:var(--green-deep);padding:.9rem 0;box-shadow:0 4px 30px rgba(0,0,0,.3)}
+    .navbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand-logo{width:46px;height:46px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--green-deep);flex-shrink:0}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1}
+    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:.04em}
+    .brand-tagline{font-size:.65rem;color:var(--gold-light);letter-spacing:.15em;text-transform:uppercase}
+    .navbar-nav .nav-link{color:rgba(255,255,255,.88)!important;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem!important;transition:color .2s;position:relative}
+    .navbar-nav .nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;right:50%;height:2px;background:var(--gold);transition:all .3s}
+    .navbar-nav .nav-link:hover{color:var(--gold-light)!important}
+    .navbar-nav .nav-link:hover::after,.navbar-nav .nav-link.active::after{left:1rem;right:1rem}
+    .navbar-nav .nav-link.active{color:var(--gold-light)!important}
+    .nav-cta{background:var(--gold)!important;color:var(--green-deep)!important;border-radius:4px;padding:.5rem 1.2rem!important;font-weight:600!important;margin-left:.5rem;transition:background .2s!important}
+    .nav-cta:hover{background:var(--gold-light)!important}
+    .navbar-toggler{border-color:rgba(255,255,255,.3)}
+    .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}
+
+    /* ── PAGE HERO ── */
+    .page-hero{min-height:50vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1800&q=80') center/cover no-repeat}
+    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(13,51,32,.95) 0%,rgba(13,51,32,.75) 60%,rgba(13,51,32,.45) 100%)}
+    .page-hero-content{position:relative;z-index:2;padding-top:120px;padding-bottom:60px}
+    .breadcrumb-bar{display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.2rem}
+    .breadcrumb-bar a{color:var(--gold-light);text-decoration:none}
+    .breadcrumb-bar i{font-size:.55rem}
+    .page-hero h1{font-size:clamp(2.6rem,5.5vw,4.5rem);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:1rem;animation:fadeUp .8s .3s both}
+    .page-hero h1 em{color:var(--gold-light);font-style:normal}
+    .page-hero-sub{font-size:1rem;color:rgba(255,255,255,.72);max-width:540px;line-height:1.8;animation:fadeUp .8s .5s both}
+    .hero-bottom-bar{position:absolute;bottom:0;left:0;right:0;background:var(--gold);height:5px}
+
+    /* ── SHARED ── */
+    .section-eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;display:flex;align-items:center;gap:10px}
+    .section-eyebrow::before{content:'';display:block;width:30px;height:2px;background:var(--gold)}
+    .section-title{font-size:clamp(1.9rem,3.8vw,2.9rem);font-weight:600;color:var(--green-deep);line-height:1.2;margin-bottom:1.25rem}
+    .section-title.light{color:var(--white)}
+    .section-lead{font-size:1rem;color:var(--text-mid);line-height:1.8}
+    .divider-gold{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin:1.25rem 0}
+    .btn-gold{background:var(--gold);color:var(--green-deep);border:none;padding:.85rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;cursor:pointer}
+    .btn-gold:hover{background:var(--gold-light);color:var(--green-deep);transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,168,76,.4)}
+    .btn-green{background:var(--green-deep);color:var(--white);border:none;padding:.85rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s}
+    .btn-green:hover{background:var(--green-mid);color:var(--white);transform:translateY(-2px)}
+
+    /* ── SERVICE NAV TABS ── */
+    .service-nav-wrap{background:var(--green-deep);padding:0;position:sticky;top:76px;z-index:900;border-bottom:3px solid var(--gold)}
+    .service-nav{display:flex;overflow-x:auto;scrollbar-width:none;gap:0}
+    .service-nav::-webkit-scrollbar{display:none}
+    .service-nav-btn{flex-shrink:0;padding:1rem 1.4rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-3px;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .service-nav-btn i{font-size:.95rem}
+    .service-nav-btn:hover{color:var(--gold-light);background:rgba(255,255,255,.05)}
+    .service-nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.08)}
+
+    /* ── SERVICE BLOCKS ── */
+    .service-block{padding:100px 0}
+    .service-block:nth-child(even){background:var(--off-white)}
+    .service-block:nth-child(odd){background:var(--white)}
+
+    .service-img{width:100%;height:420px;object-fit:cover;border-radius:8px;display:block}
+    .service-img-wrap{position:relative}
+    .service-img-badge{
+      position:absolute;bottom:1.5rem;left:1.5rem;
+      background:var(--green-deep);color:var(--white);
+      padding:1rem 1.5rem;border-radius:6px;
+      border-left:4px solid var(--gold);
+      font-size:.82rem;line-height:1.5;
+      box-shadow:0 8px 30px rgba(0,0,0,.2)
+    }
+    .service-img-badge strong{color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:1.1rem;display:block}
+
+    .benefit-list{list-style:none;padding:0;margin:1.5rem 0}
+    .benefit-list li{display:flex;align-items:flex-start;gap:12px;padding:.65rem 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;color:var(--text-mid);line-height:1.6}
+    .benefit-list li:last-child{border-bottom:none}
+    .benefit-icon{width:32px;height:32px;background:var(--gold-pale);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .benefit-icon i{font-size:.8rem;color:var(--gold)}
+
+    .process-steps{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+    .process-step{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;background:var(--white);border-radius:6px;border:1px solid rgba(0,0,0,.06);transition:all .3s}
+    .service-block:nth-child(even) .process-step{background:var(--white)}
+    .process-step:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,168,76,.15)}
+    .step-num{width:38px;height:38px;background:var(--green-deep);color:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;flex-shrink:0}
+    .step-content h6{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--green-deep);margin-bottom:.25rem}
+    .step-content p{font-size:.84rem;color:var(--text-mid);line-height:1.6;margin:0}
+
+    /* ── WHY STRIP ── */
+    .why-strip{background:var(--green-deep);padding:70px 0;position:relative;overflow:hidden}
+    .why-strip::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=50') center/cover;opacity:.06}
+    .why-item{text-align:center;padding:2rem 1.5rem}
+    .why-item-icon{width:64px;height:64px;background:rgba(201,168,76,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;border:1px solid rgba(201,168,76,.3)}
+    .why-item-icon i{font-size:1.4rem;color:var(--gold)}
+    .why-item h5{font-size:1.25rem;color:var(--gold-light);margin-bottom:.6rem}
+    .why-item p{font-size:.86rem;color:rgba(255,255,255,.65);line-height:1.75}
+
+    /* ── PRICING HINT ── */
+    .pricing-section{padding:80px 0;background:var(--off-white)}
+    .price-card{background:var(--white);border-radius:8px;padding:2.5rem 2rem;text-align:center;border:1px solid rgba(0,0,0,.07);height:100%;transition:all .3s;position:relative;overflow:hidden}
+    .price-card.featured{background:var(--green-deep);border-color:var(--gold)}
+    .price-card.featured::before{content:'Most Popular';position:absolute;top:1.25rem;right:-2rem;background:var(--gold);color:var(--green-deep);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 3rem;transform:rotate(45deg) translateX(10px)}
+    .price-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1)}
+    .price-card.featured:hover{box-shadow:0 20px 50px rgba(13,51,32,.25)}
+    .price-icon{font-size:2.2rem;margin-bottom:1rem}
+    .price-card .price-icon{color:var(--gold)}
+    .price-card.featured .price-icon{color:var(--gold-light)}
+    .price-name{font-size:1.5rem;color:var(--green-deep);margin-bottom:.4rem}
+    .price-card.featured .price-name{color:var(--gold-light)}
+    .price-desc{font-size:.85rem;color:var(--text-light);margin-bottom:1.5rem;line-height:1.6}
+    .price-card.featured .price-desc{color:rgba(255,255,255,.6)}
+    .price-features{list-style:none;padding:0;text-align:left;margin-bottom:2rem}
+    .price-features li{padding:.45rem 0;font-size:.87rem;color:var(--text-mid);display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,0,0,.05)}
+    .price-card.featured .price-features li{color:rgba(255,255,255,.75);border-bottom-color:rgba(255,255,255,.08)}
+    .price-features li:last-child{border-bottom:none}
+    .price-features i{color:var(--gold);font-size:.8rem;flex-shrink:0}
+    .price-cta{width:100%;padding:.85rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;cursor:pointer;border:none;transition:all .25s}
+    .price-cta.outline{background:transparent;border:2px solid var(--green-mid);color:var(--green-deep)}
+    .price-cta.outline:hover{background:var(--green-deep);color:var(--white)}
+    .price-cta.solid{background:var(--gold);color:var(--green-deep)}
+    .price-cta.solid:hover{background:var(--gold-light)}
+
+    /* ── FLOATING ── */
+    .floating-buttons{position:fixed;bottom:2rem;right:2rem;display:flex;flex-direction:column;gap:.75rem;z-index:999}
+    .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:all .25s}
+    .float-btn:hover{transform:scale(1.1)}
+    .float-whatsapp{background:#25D366;color:var(--white)}
+    .float-call{background:var(--gold);color:var(--green-deep)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--green-deep);color:rgba(255,255,255,.75);padding:70px 0 0}
+    .footer-heading{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:1.25rem;font-weight:600}
+    .footer-links{list-style:none;padding:0}
+    .footer-links li{margin-bottom:.5rem}
+    .footer-links a{color:rgba(255,255,255,.58);text-decoration:none;font-size:.85rem;display:flex;align-items:center;gap:8px;transition:color .2s}
+    .footer-links a i{font-size:.6rem;color:var(--gold)}
+    .footer-links a:hover{color:var(--gold-light)}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem;font-size:.85rem;color:rgba(255,255,255,.6)}
+    .footer-contact-item i{color:var(--gold);margin-top:3px;flex-shrink:0;width:16px}
+    .footer-desc{font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6);margin:1rem 0 1.5rem;max-width:280px}
+    .footer-social{display:flex;gap:10px}
+    .social-btn{width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:all .2s}
+    .social-btn:hover{background:var(--gold);color:var(--green-deep)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:1.25rem 0;margin-top:3rem}
+    .footer-bottom-text{font-size:.78rem;color:rgba(255,255,255,.4)}
+    .footer-bottom-text a{color:var(--gold);text-decoration:none}
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="brand-logo">U</div>
+      <div class="brand-text">
+        <span class="brand-name">UNEEK</span>
+        <span class="brand-tagline">Property Management & Real Estate</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE HERO ══════════ -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb-bar">
+      <a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Services</span>
+    </div>
+    <h1>Our <em>Services</em></h1>
+    <p class="page-hero-sub">Comprehensive property solutions — from leasing and management to construction and cleaning — all delivered under one trusted roof.</p>
+  </div>
+  <div class="hero-bottom-bar"></div>
+</section>
+
+<!-- ══════════ STICKY SERVICE NAV ══════════ -->
+<div class="service-nav-wrap">
+  <div class="container">
+    <div class="service-nav" id="serviceNav">
+      <button class="service-nav-btn active" onclick="scrollTo('s1',this)"><i class="fas fa-user-check"></i> Tenant Screening</button>
+      <button class="service-nav-btn" onclick="scrollTo('s2',this)"><i class="fas fa-hand-holding-usd"></i> Rent Collection</button>
+      <button class="service-nav-btn" onclick="scrollTo('s3',this)"><i class="fas fa-tools"></i> Maintenance</button>
+      <button class="service-nav-btn" onclick="scrollTo('s4',this)"><i class="fas fa-chart-bar"></i> Financial Reporting</button>
+      <button class="service-nav-btn" onclick="scrollTo('s5',this)"><i class="fas fa-building"></i> Real Estate Agency</button>
+      <button class="service-nav-btn" onclick="scrollTo('s6',this)"><i class="fas fa-broom"></i> Cleaning</button>
+      <button class="service-nav-btn" onclick="scrollTo('s7',this)"><i class="fas fa-hard-hat"></i> Construction</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SERVICE 1 — TENANT SCREENING & LEASING
+════════════════════════════════════════ -->
+<section class="service-block" id="s1">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="service-img-wrap">
+          <img class="service-img" src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&q=80" alt="Tenant Screening"/>
+          <div class="service-img-badge">
+            <strong>Service 01</strong>
+            Tenant Screening &amp; Leasing
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-eyebrow">Service 01</div>
+        <h2 class="section-title">Tenant Screening<br/>&amp; Leasing</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-3">Finding the right tenant is the single most important step in protecting your property investment. Our rigorous, multi-step screening process ensures you get reliable, responsible occupants — every time.</p>
+        <p style="font-size:.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">We handle everything from advertising your property and conducting viewings, to background checks, credit assessments, and lease drafting — so you don't have to lift a finger.</p>
+
+        <ul class="benefit-list">
+          <li><div class="benefit-icon"><i class="fas fa-search"></i></div><div><strong>Thorough Background Checks</strong> — Criminal records, previous tenancy history, and reference verification.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-credit-card"></i></div><div><strong>Credit &amp; Financial Assessment</strong> — Evaluate applicants' ability to meet rental obligations consistently.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-file-contract"></i></div><div><strong>Professional Lease Drafting</strong> — Legally sound tenancy agreements that protect your rights as an owner.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-camera"></i></div><div><strong>Property Marketing</strong> — Professional listings with quality photography to attract quality tenants fast.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-handshake"></i></div><div><strong>Move-In Management</strong> — Condition reports, key handover, and smooth onboarding for new tenants.</div></li>
+        </ul>
+
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="https://wa.me/233000000000" class="btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICE 2 — RENT COLLECTION
+════════════════════════════════════════ -->
+<section class="service-block" id="s2">
+  <div class="container">
+    <div class="row align-items-center g-5 flex-lg-row-reverse">
+      <div class="col-lg-6 reveal">
+        <div class="service-img-wrap">
+          <img class="service-img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80" alt="Rent Collection"/>
+          <div class="service-img-badge">
+            <strong>Service 02</strong>
+            Rent Collection
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-eyebrow">Service 02</div>
+        <h2 class="section-title">Reliable Rent<br/>Collection</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-3">Late or missed rent payments are a landlord's biggest headache. Our structured collection system ensures your rental income arrives on time, every time — without you having to chase a single tenant.</p>
+        <p style="font-size:.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">We act as your professional intermediary — handling all rent-related communications, managing arrears with clear procedures, and disbursing your funds with full transparency.</p>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content"><h6>Rent Due Reminders</h6><p>Automated and personal reminders sent to tenants ahead of due dates to reduce late payments.</p></div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content"><h6>Secure Collection</h6><p>Multiple payment channels including mobile money and bank transfer for tenant convenience.</p></div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-content"><h6>Arrears Management</h6><p>Firm but professional handling of late payments with escalation procedures where necessary.</p></div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-content"><h6>Owner Disbursement</h6><p>Your rental income transferred promptly with a detailed statement of all transactions.</p></div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="https://wa.me/233000000000" class="btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICE 3 — PROPERTY MAINTENANCE
+════════════════════════════════════════ -->
+<section class="service-block" id="s3">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="service-img-wrap">
+          <img class="service-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80" alt="Property Maintenance"/>
+          <div class="service-img-badge">
+            <strong>Service 03</strong>
+            Property Maintenance
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-eyebrow">Service 03</div>
+        <h2 class="section-title">Property<br/>Maintenance</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-3">A well-maintained property retains its value, attracts quality tenants, and avoids costly repairs. Our maintenance team provides both proactive care and rapid response to keep your property in perfect condition.</p>
+
+        <ul class="benefit-list">
+          <li><div class="benefit-icon"><i class="fas fa-clipboard-check"></i></div><div><strong>Regular Property Inspections</strong> — Scheduled visits to identify and address issues before they escalate.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-bolt"></i></div><div><strong>Emergency Repairs</strong> — Rapid response team available for urgent electrical, plumbing, and structural issues.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-paint-roller"></i></div><div><strong>Renovations &amp; Upgrades</strong> — From fresh paint to full refurbishments — we manage it all with trusted contractors.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-leaf"></i></div><div><strong>Grounds &amp; Garden Care</strong> — Keeping the exterior of your property presentable and well-kept year-round.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-file-alt"></i></div><div><strong>Maintenance Reporting</strong> — Detailed records of all works completed, with costs and contractor details.</div></li>
+        </ul>
+
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="https://wa.me/233000000000" class="btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICE 4 — FINANCIAL REPORTING
+════════════════════════════════════════ -->
+<section class="service-block" id="s4">
+  <div class="container">
+    <div class="row align-items-center g-5 flex-lg-row-reverse">
+      <div class="col-lg-6 reveal">
+        <div class="service-img-wrap">
+          <img class="service-img" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80" alt="Financial Reporting"/>
+          <div class="service-img-badge">
+            <strong>Service 04</strong>
+            Financial Reporting
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-eyebrow">Service 04</div>
+        <h2 class="section-title">Transparent Financial<br/>Reporting</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-3">You should always know exactly what's happening with your property's finances. Our detailed, jargon-free reports give you complete visibility into your rental income, expenses, and overall performance.</p>
+        <p style="font-size:.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">Whether you own one unit or a full portfolio, we provide the financial clarity you need to make smart investment decisions — backed by accurate, timely data.</p>
+
+        <ul class="benefit-list">
+          <li><div class="benefit-icon"><i class="fas fa-file-invoice-dollar"></i></div><div><strong>Monthly Income Statements</strong> — Clear breakdown of rent received, disbursed, and any deductions.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-receipt"></i></div><div><strong>Expense Tracking</strong> — All maintenance, management, and operational costs itemised and receipted.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-chart-line"></i></div><div><strong>Portfolio Performance</strong> — Annual summaries and yield analysis to help you grow your investment.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-lock"></i></div><div><strong>Secure Digital Access</strong> — Statements delivered securely via email or shared digital platforms.</div></li>
+        </ul>
+
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="https://wa.me/233000000000" class="btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICE 5 — REAL ESTATE AGENCY
+════════════════════════════════════════ -->
+<section class="service-block" id="s5">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="service-img-wrap">
+          <img class="service-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Real Estate Agency"/>
+          <div class="service-img-badge">
+            <strong>Service 05</strong>
+            Real Estate Agency
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-eyebrow">Service 05</div>
+        <h2 class="section-title">Real Estate<br/>Agency Services</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-3">Whether you're buying, selling, or investing in property, our experienced agents are with you every step of the way — providing market insight, negotiation expertise, and trusted advice.</p>
+        <p style="font-size:.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">We have a deep understanding of Ghana's real estate market, particularly in Accra and surrounding areas, enabling us to match clients with the right properties at the right price.</p>
+
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div style="padding:1.25rem;background:var(--off-white);border-radius:6px;border-left:3px solid var(--gold);height:100%">
+              <i class="fas fa-home" style="color:var(--gold);margin-bottom:.5rem;display:block;font-size:1.3rem"></i>
+              <div style="font-size:.9rem;font-weight:600;color:var(--green-deep);margin-bottom:.25rem">Property Sales</div>
+              <div style="font-size:.82rem;color:var(--text-light)">Residential &amp; commercial property sales with expert negotiation</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:1.25rem;background:var(--off-white);border-radius:6px;border-left:3px solid var(--gold);height:100%">
+              <i class="fas fa-search-location" style="color:var(--gold);margin-bottom:.5rem;display:block;font-size:1.3rem"></i>
+              <div style="font-size:.9rem;font-weight:600;color:var(--green-deep);margin-bottom:.25rem">Property Search</div>
+              <div style="font-size:.82rem;color:var(--text-light)">Find your ideal home or investment property in Ghana</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:1.25rem;background:var(--off-white);border-radius:6px;border-left:3px solid var(--gold);height:100%">
+              <i class="fas fa-chart-pie" style="color:var(--gold);margin-bottom:.5rem;display:block;font-size:1.3rem"></i>
+              <div style="font-size:.9rem;font-weight:600;color:var(--green-deep);margin-bottom:.25rem">Investment Advisory</div>
+              <div style="font-size:.82rem;color:var(--text-light)">Data-backed advice for profitable real estate investment</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="padding:1.25rem;background:var(--off-white);border-radius:6px;border-left:3px solid var(--gold);height:100%">
+              <i class="fas fa-file-signature" style="color:var(--gold);margin-bottom:.5rem;display:block;font-size:1.3rem"></i>
+              <div style="font-size:.9rem;font-weight:600;color:var(--green-deep);margin-bottom:.25rem">Transaction Support</div>
+              <div style="font-size:.82rem;color:var(--text-light)">Full support with documentation, due diligence and closing</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="https://wa.me/233000000000" class="btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICE 6 — CLEANING SERVICES
+════════════════════════════════════════ -->
+<section class="service-block" id="s6">
+  <div class="container">
+    <div class="row align-items-center g-5 flex-lg-row-reverse">
+      <div class="col-lg-6 reveal">
+        <div class="service-img-wrap">
+          <img class="service-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" alt="Cleaning Services"/>
+          <div class="service-img-badge">
+            <strong>Service 06</strong>
+            Cleaning Services
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-eyebrow">Service 06</div>
+        <h2 class="section-title">Professional<br/>Cleaning Services</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-3">A clean property is a valuable property. Our professional cleaning teams deliver high-standard residential and commercial cleaning that keeps your space spotless, hygienic, and presentable at all times.</p>
+
+        <ul class="benefit-list">
+          <li><div class="benefit-icon"><i class="fas fa-home"></i></div><div><strong>Residential Cleaning</strong> — Regular housekeeping, deep cleans, and end-of-tenancy cleaning for residential properties.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-building"></i></div><div><strong>Commercial Cleaning</strong> — Office, retail, and commercial space cleaning on flexible scheduled programs.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-hard-hat"></i></div><div><strong>Post-Construction Cleaning</strong> — Thorough cleaning of newly built or renovated properties before occupation.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-spray-can"></i></div><div><strong>Deep Cleaning</strong> — Intensive cleaning for heavily soiled properties, move-in/move-out conditions.</div></li>
+          <li><div class="benefit-icon"><i class="fas fa-calendar-check"></i></div><div><strong>Scheduled Programs</strong> — Weekly, bi-weekly, or monthly cleaning contracts tailored to your needs.</div></li>
+        </ul>
+
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="https://wa.me/233000000000" class="btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICE 7 — BUILDING & CONSTRUCTION
+════════════════════════════════════════ -->
+<section class="service-block" id="s7">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="service-img-wrap">
+          <img class="service-img" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" alt="Building & Construction"/>
+          <div class="service-img-badge">
+            <strong>Service 07</strong>
+            Building &amp; Construction
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-eyebrow">Service 07</div>
+        <h2 class="section-title">Building &amp;<br/>Construction</h2>
+        <div class="divider-gold"></div>
+        <p class="section-lead mb-3">From concept to completion, our construction division delivers quality residential and commercial building projects on time and on budget. We combine skilled craftsmanship with professional project management to bring your vision to life.</p>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content"><h6>Consultation &amp; Planning</h6><p>We work with you to understand your requirements, site constraints, budget, and timeline before a single brick is laid.</p></div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content"><h6>Design &amp; Approval</h6><p>Our team coordinates architectural design and handles all necessary building approvals and permits on your behalf.</p></div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-content"><h6>Quality Construction</h6><p>Skilled contractors, quality materials, and strict site supervision ensure every build meets our high standards.</p></div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-content"><h6>Handover &amp; Support</h6><p>Full project handover with documentation and post-completion support to ensure your complete satisfaction.</p></div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-envelope"></i> Get a Quote</a>
+          <a href="https://wa.me/233000000000" class="btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY UNEEK STRIP ══════════ -->
+<section class="why-strip">
+  <div class="container position-relative">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow light justify-content-center">Why Choose Us</div>
+        <h2 class="section-title light">What Makes Uneek Different</h2>
+        <div class="divider-gold mx-auto"></div>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="why-item">
+          <div class="why-item-icon"><i class="fas fa-shield-alt"></i></div>
+          <h5>Fully Licensed</h5>
+          <p>Professionally licensed and insured, giving you complete peace of mind when you work with us.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="why-item">
+          <div class="why-item-icon"><i class="fas fa-users"></i></div>
+          <h5>Dedicated Team</h5>
+          <p>A committed team of property professionals assigned to manage your account personally.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="why-item">
+          <div class="why-item-icon"><i class="fas fa-clock"></i></div>
+          <h5>Fast Response</h5>
+          <p>We respond to maintenance issues, tenant concerns, and client queries quickly and professionally.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="why-item">
+          <div class="why-item-icon"><i class="fas fa-star"></i></div>
+          <h5>Proven Track Record</h5>
+          <p>Over 8 years of successful property management with hundreds of satisfied clients across Ghana.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRICING / PACKAGES ══════════ -->
+<section class="pricing-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow justify-content-center">Packages</div>
+        <h2 class="section-title">Management Packages</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="section-lead mx-auto">Flexible management packages to suit every property owner. <strong>Contact us for a custom quote</strong> tailored to your portfolio.</p>
+      </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <!-- Basic -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="price-card">
+          <div class="price-icon"><i class="fas fa-home"></i></div>
+          <div class="price-name">Basic</div>
+          <div class="price-desc">Essential management for single-unit property owners</div>
+          <ul class="price-features">
+            <li><i class="fas fa-check"></i> Tenant Screening &amp; Leasing</li>
+            <li><i class="fas fa-check"></i> Rent Collection</li>
+            <li><i class="fas fa-check"></i> Monthly Financial Statement</li>
+            <li><i class="fas fa-check"></i> Tenant Communication</li>
+            <li><i class="fas fa-check"></i> Basic Maintenance Coordination</li>
+          </ul>
+          <button class="price-cta outline" onclick="window.location='contact.html'">Get a Quote</button>
+        </div>
+      </div>
+      <!-- Standard (Featured) -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="price-card featured">
+          <div class="price-icon"><i class="fas fa-building"></i></div>
+          <div class="price-name">Standard</div>
+          <div class="price-desc">Comprehensive management for serious property owners</div>
+          <ul class="price-features">
+            <li><i class="fas fa-check"></i> All Basic Package Features</li>
+            <li><i class="fas fa-check"></i> Quarterly Property Inspections</li>
+            <li><i class="fas fa-check"></i> Full Maintenance Management</li>
+            <li><i class="fas fa-check"></i> Detailed Financial Reporting</li>
+            <li><i class="fas fa-check"></i> Cleaning Coordination</li>
+            <li><i class="fas fa-check"></i> Priority Support Response</li>
+          </ul>
+          <button class="price-cta solid" onclick="window.location='contact.html'">Get a Quote</button>
+        </div>
+      </div>
+      <!-- Premium -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="price-card">
+          <div class="price-icon"><i class="fas fa-city"></i></div>
+          <div class="price-name">Premium</div>
+          <div class="price-desc">Full-service management for multi-unit investors</div>
+          <ul class="price-features">
+            <li><i class="fas fa-check"></i> All Standard Package Features</li>
+            <li><i class="fas fa-check"></i> Portfolio Performance Analysis</li>
+            <li><i class="fas fa-check"></i> Real Estate Investment Advisory</li>
+            <li><i class="fas fa-check"></i> Construction &amp; Renovation Oversight</li>
+            <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+            <li><i class="fas fa-check"></i> 24/7 Emergency Support</li>
+          </ul>
+          <button class="price-cta outline" onclick="window.location='contact.html'">Get a Quote</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA BAND ══════════ -->
+<section style="background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);padding:80px 0;">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 reveal">
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--green-deep);margin-bottom:1rem;">Not Sure Which Service You Need?</h2>
+        <p style="font-size:.95rem;color:rgba(13,51,32,.75);max-width:500px;line-height:1.75;">Talk to our team today and we'll recommend the right solution for your property. No obligation, just honest advice.</p>
+      </div>
+      <div class="col-lg-5 reveal">
+        <div class="d-flex flex-wrap gap-3 justify-content-lg-end">
+          <a href="contact.html" class="btn-green"><i class="fas fa-envelope"></i> Contact Us</a>
+          <a href="tel:+233000000000" class="btn-green"><i class="fas fa-phone"></i> Call Now</a>
+          <a href="https://wa.me/233000000000" style="background:#25D366;color:#fff;padding:.9rem 2.2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="text-decoration:none;">
+          <div class="brand-logo">U</div>
+          <div class="brand-text ms-3">
+            <span class="brand-name">UNEEK</span>
+            <span class="brand-tagline">Property Management & Real Estate</span>
+          </div>
+        </a>
+        <p class="footer-desc">Ghana's trusted partner for property management, real estate agency, construction, and cleaning services. Excellence in every detail.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-heading">Our Services</div>
+        <ul class="footer-links">
+          <li><a href="#s1"><i class="fas fa-chevron-right"></i> Tenant Screening</a></li>
+          <li><a href="#s2"><i class="fas fa-chevron-right"></i> Rent Collection</a></li>
+          <li><a href="#s3"><i class="fas fa-chevron-right"></i> Property Maintenance</a></li>
+          <li><a href="#s4"><i class="fas fa-chevron-right"></i> Financial Reporting</a></li>
+          <li><a href="#s5"><i class="fas fa-chevron-right"></i> Real Estate Agency</a></li>
+          <li><a href="#s6"><i class="fas fa-chevron-right"></i> Cleaning Services</a></li>
+          <li><a href="#s7"><i class="fas fa-chevron-right"></i> Building & Construction</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-heading">Contact Us</div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> [Address Placeholder], Accra, Ghana</div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i> [Phone Placeholder]</div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i> [Email Placeholder]</div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i> [WhatsApp Placeholder]</div>
+        <div class="footer-contact-item"><i class="far fa-clock"></i> Mon–Sat: 8:00am – 6:00pm</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6"><div class="footer-bottom-text">© 2025 Uneek Property Management & Real Estate. All rights reserved.</div></div>
+        <div class="col-md-6 text-md-end"><div class="footer-bottom-text"><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-buttons">
+  <a href="https://wa.me/233000000000" target="_blank" class="float-btn float-whatsapp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+233000000000" class="float-btn float-call"><i class="fas fa-phone"></i></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Sticky nav
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Service tab nav scroll
+  function scrollTo(id, btn) {
+    document.querySelectorAll('.service-nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 150;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+
+  // Highlight active service nav on scroll
+  const sections = ['s1','s2','s3','s4','s5','s6','s7'];
+  const buttons  = document.querySelectorAll('.service-nav-btn');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 200) current = id;
+    });
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle('active', sections[i] === current);
+    });
+  });
+</script>
+</body>
+</html>

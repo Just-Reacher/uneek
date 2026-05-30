@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Uneek Property Management & Real Estate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/x-icon" href="images/favicon.png">
+  <style>
+    :root {
+      --green-deep:  #0d3320;
+      --green-mid:   #1a5c38;
+      --green-light: #2a7a4e;
+      --gold:        #c9a84c;
+      --gold-light:  #e8c96a;
+      --gold-pale:   #f5e9c4;
+      --white:       #ffffff;
+      --off-white:   #f9f7f2;
+      --text-dark:   #1a1a1a;
+      --text-mid:    #444444;
+      --text-light:  #777777;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; color:var(--text-dark); background:var(--white); overflow-x:hidden; }
+    h1,h2,h3,h4,h5 { font-family:'Cormorant Garamond',serif; }
+
+    /* ── NAVBAR ── */
+    .navbar { background:transparent; padding:1.4rem 0; position:fixed; top:0; left:0; right:0; z-index:1000; transition:all .4s; }
+    .navbar.scrolled { background:var(--green-deep); padding:.9rem 0; box-shadow:0 4px 30px rgba(0,0,0,.3); }
+    .navbar-brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .brand-logo { width:46px; height:46px; background:var(--gold); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; color:var(--green-deep); flex-shrink:0; }
+    .brand-text { display:flex; flex-direction:column; line-height:1.1; }
+    .brand-name { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:700; color:var(--white); letter-spacing:.04em; }
+    .brand-tagline { font-size:.65rem; color:var(--gold-light); letter-spacing:.15em; text-transform:uppercase; }
+    .navbar-nav .nav-link { color:rgba(255,255,255,.88)!important; font-size:.82rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:.5rem 1rem!important; transition:color .2s; position:relative; }
+    .navbar-nav .nav-link::after { content:''; position:absolute; bottom:-2px; left:50%; right:50%; height:2px; background:var(--gold); transition:all .3s; }
+    .navbar-nav .nav-link:hover { color:var(--gold-light)!important; }
+    .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after { left:1rem; right:1rem; }
+    .navbar-nav .nav-link.active { color:var(--gold-light)!important; }
+    .nav-cta { background:var(--gold)!important; color:var(--green-deep)!important; border-radius:4px; padding:.5rem 1.2rem!important; font-weight:600!important; margin-left:.5rem; transition:background .2s!important; }
+    .nav-cta:hover { background:var(--gold-light)!important; }
+    .navbar-toggler { border-color:rgba(255,255,255,.3); }
+    .navbar-toggler-icon { background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      min-height: 52vh;
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=80') center/cover no-repeat;
+    }
+    .page-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(13,51,32,.95) 0%, rgba(13,51,32,.72) 60%, rgba(13,51,32,.45) 100%);
+    }
+    .page-hero-content { position:relative; z-index:2; padding-top:110px; padding-bottom:60px; }
+    .breadcrumb-bar { display:flex; align-items:center; gap:8px; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:1.2rem; }
+    .breadcrumb-bar a { color:var(--gold-light); text-decoration:none; }
+    .breadcrumb-bar i { font-size:.55rem; }
+    .page-hero h1 { font-size:clamp(2.6rem,5.5vw,4.5rem); font-weight:600; color:var(--white); line-height:1.1; margin-bottom:1rem; animation:fadeUp .8s .3s both; }
+    .page-hero h1 em { color:var(--gold-light); font-style:normal; }
+    .page-hero-sub { font-size:1rem; color:rgba(255,255,255,.72); max-width:520px; line-height:1.8; animation:fadeUp .8s .5s both; }
+    .hero-bottom-bar {
+      position: absolute; bottom:0; left:0; right:0;
+      background: var(--gold);
+      height: 5px;
+    }
+
+    /* ── SHARED TYPOGRAPHY ── */
+    .section-eyebrow { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; display:flex; align-items:center; gap:10px; }
+    .section-eyebrow::before { content:''; display:block; width:30px; height:2px; background:var(--gold); }
+    .section-title { font-size:clamp(1.9rem,3.8vw,2.9rem); font-weight:600; color:var(--green-deep); line-height:1.2; margin-bottom:1.25rem; }
+    .section-title.light { color:var(--white); }
+    .section-lead { font-size:1rem; color:var(--text-mid); line-height:1.8; }
+    .section-lead.light { color:rgba(255,255,255,.75); }
+    .divider-gold { width:60px; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:2px; margin:1.25rem 0; }
+    .btn-gold { background:var(--gold); color:var(--green-deep); border:none; padding:.85rem 2rem; font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all .25s; }
+    .btn-gold:hover { background:var(--gold-light); color:var(--green-deep); transform:translateY(-2px); box-shadow:0 8px 25px rgba(201,168,76,.4); }
+    .btn-outline-green { background:transparent; color:var(--green-deep); border:2px solid var(--green-mid); padding:.8rem 2rem; font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all .25s; }
+    .btn-outline-green:hover { background:var(--green-deep); color:var(--white); }
+
+    /* ── STORY SECTION ── */
+    .story-section { padding:100px 0; background:var(--off-white); }
+    .story-image-stack { position:relative; }
+    .story-img-main { width:100%; height:480px; object-fit:cover; border-radius:6px; display:block; }
+    .story-img-accent {
+      position:absolute; bottom:-2rem; right:-2rem;
+      width:200px; height:155px;
+      object-fit:cover; border-radius:6px;
+      border:5px solid var(--white);
+      box-shadow:0 10px 40px rgba(0,0,0,.18);
+    }
+    .story-badge {
+      position:absolute; top:2rem; left:-1.5rem;
+      background:var(--green-deep);
+      color:var(--white); padding:1.25rem 1.5rem;
+      border-radius:6px; text-align:center;
+      box-shadow:0 10px 30px rgba(13,51,32,.3);
+    }
+    .story-badge .sb-num { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:700; color:var(--gold); line-height:1; display:block; }
+    .story-badge .sb-lbl { font-size:.65rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.7); }
+    .timeline { border-left:2px solid var(--gold-pale); padding-left:2rem; margin-top:1.5rem; }
+    .timeline-item { position:relative; padding-bottom:1.5rem; }
+    .timeline-item:last-child { padding-bottom:0; }
+    .timeline-item::before { content:''; position:absolute; left:-2.45rem; top:5px; width:12px; height:12px; border-radius:50%; background:var(--gold); border:2px solid var(--white); box-shadow:0 0 0 2px var(--gold); }
+    .timeline-year { font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:.25rem; }
+    .timeline-title { font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--green-deep); margin-bottom:.3rem; }
+    .timeline-text { font-size:.88rem; color:var(--text-mid); line-height:1.7; }
+
+    /* ── MISSION / VISION / VALUES ── */
+    .mvv-section { padding:100px 0; background:var(--white); }
+    .mvv-card {
+      padding:2.5rem;
+      border-radius:6px;
+      height:100%;
+      position:relative;
+      overflow:hidden;
+      transition:all .3s;
+    }
+    .mvv-card.mission { background:var(--green-deep); }
+    .mvv-card.vision  { background:var(--gold); }
+    .mvv-card.values  { background:var(--off-white); border:1px solid rgba(0,0,0,.07); }
+    .mvv-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,.12); }
+    .mvv-icon { font-size:2.5rem; margin-bottom:1.25rem; }
+    .mvv-card.mission .mvv-icon { color:var(--gold); }
+    .mvv-card.vision  .mvv-icon { color:var(--green-deep); }
+    .mvv-card.values  .mvv-icon { color:var(--green-mid); }
+    .mvv-card h3 { font-size:1.6rem; margin-bottom:1rem; }
+    .mvv-card.mission h3 { color:var(--gold-light); }
+    .mvv-card.vision  h3 { color:var(--green-deep); }
+    .mvv-card.values  h3 { color:var(--green-deep); }
+    .mvv-card p { font-size:.92rem; line-height:1.8; }
+    .mvv-card.mission p { color:rgba(255,255,255,.78); }
+    .mvv-card.vision  p { color:rgba(13,51,32,.82); }
+    .mvv-card.values  p { color:var(--text-mid); }
+    .values-list { list-style:none; padding:0; margin-top:.75rem; }
+    .values-list li { display:flex; align-items:flex-start; gap:10px; padding:.4rem 0; font-size:.88rem; color:var(--text-mid); }
+    .values-list i { color:var(--gold); margin-top:3px; flex-shrink:0; }
+
+    /* ── OBJECTIVES ── */
+    .objectives-section {
+      padding:100px 0;
+      background:var(--green-deep);
+      position:relative; overflow:hidden;
+    }
+    .objectives-section::before {
+      content:''; position:absolute; inset:0;
+      background:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=50') center/cover;
+      opacity:.06;
+    }
+    .objective-item {
+      display:flex; gap:1.5rem; align-items:flex-start;
+      padding:1.75rem; border-radius:6px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      transition:all .3s;
+      height:100%;
+    }
+    .objective-item:hover { background:rgba(255,255,255,.09); border-color:rgba(201,168,76,.3); transform:translateY(-4px); }
+    .obj-num { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:700; color:var(--gold); line-height:1; flex-shrink:0; min-width:2.5rem; }
+    .obj-content h5 { font-size:1.15rem; color:var(--gold-light); margin-bottom:.5rem; }
+    .obj-content p { font-size:.87rem; color:rgba(255,255,255,.65); line-height:1.75; }
+
+    /* ── TEAM / CEO ── */
+    .team-section { padding:100px 0; background:var(--off-white); }
+    .ceo-card {
+      background:var(--white);
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 10px 50px rgba(0,0,0,.08);
+      display:flex; flex-wrap:wrap;
+    }
+    .ceo-photo-wrap {
+      flex:0 0 320px;
+      position:relative;
+      min-height:420px;
+      background:var(--green-deep);
+    }
+    .ceo-photo-wrap img { width:100%; height:100%; object-fit:cover; display:block; opacity:.9; }
+    .ceo-photo-badge {
+      position:absolute; bottom:1.5rem; left:1.5rem;
+      background:var(--gold);
+      color:var(--green-deep);
+      font-size:.65rem; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      padding:5px 14px; border-radius:2px;
+    }
+    .ceo-info {
+      flex:1; min-width:280px;
+      padding:3rem;
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .ceo-tag { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem; }
+    .ceo-name { font-size:2.5rem; font-weight:600; color:var(--green-deep); line-height:1.1; margin-bottom:.4rem; }
+    .ceo-role { font-size:.88rem; color:var(--text-light); margin-bottom:1.5rem; letter-spacing:.05em; }
+    .ceo-bio { font-size:.92rem; color:var(--text-mid); line-height:1.85; margin-bottom:1.75rem; }
+    .ceo-socials { display:flex; gap:10px; }
+    .ceo-social-btn { width:38px; height:38px; border-radius:4px; background:var(--off-white); border:1px solid rgba(0,0,0,.07); display:flex; align-items:center; justify-content:center; color:var(--green-mid); font-size:.9rem; text-decoration:none; transition:all .2s; }
+    .ceo-social-btn:hover { background:var(--green-deep); color:var(--gold); }
+    .ceo-stats { display:flex; gap:2rem; margin-bottom:1.75rem; }
+    .ceo-stat-num { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; color:var(--green-deep); line-height:1; }
+    .ceo-stat-lbl { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-light); }
+
+    .team-card {
+      background:var(--white);
+      border-radius:6px;
+      overflow:hidden;
+      transition:all .3s;
+      border:1px solid rgba(0,0,0,.07);
+    }
+    .team-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,.1); }
+    .team-photo { height:260px; position:relative; overflow:hidden; background:var(--green-deep); }
+    .team-photo img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+    .team-card:hover .team-photo img { transform:scale(1.05); }
+    .team-photo-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(13,51,32,.7) 0%,transparent 50%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:1rem; }
+    .team-card:hover .team-photo-overlay { opacity:1; }
+    .team-social-links { display:flex; gap:8px; }
+    .team-social-links a { width:32px; height:32px; background:rgba(255,255,255,.15); border-radius:4px; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:.8rem; text-decoration:none; transition:background .2s; }
+    .team-social-links a:hover { background:var(--gold); color:var(--green-deep); }
+    .team-info { padding:1.5rem; }
+    .team-role { font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:.3rem; }
+    .team-name { font-size:1.3rem; color:var(--green-deep); margin-bottom:.3rem; }
+    .team-desc { font-size:.83rem; color:var(--text-light); line-height:1.6; }
+
+    /* ── STATS BAND ── */
+    .stats-band { background:var(--gold); padding:60px 0; }
+    .stat-block { text-align:center; }
+    .stat-block .num { font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:700; color:var(--green-deep); line-height:1; }
+    .stat-block .lbl { font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(13,51,32,.7); margin-top:.4rem; }
+    .stat-divider { width:1px; background:rgba(13,51,32,.15); }
+
+    /* ── FLOATING BUTTONS ── */
+    .floating-buttons { position:fixed; bottom:2rem; right:2rem; display:flex; flex-direction:column; gap:.75rem; z-index:999; }
+    .float-btn { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; text-decoration:none; box-shadow:0 4px 20px rgba(0,0,0,.25); transition:all .25s; }
+    .float-btn:hover { transform:scale(1.1); }
+    .float-whatsapp { background:#25D366; color:var(--white); }
+    .float-call { background:var(--gold); color:var(--green-deep); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--green-deep); color:rgba(255,255,255,.75); padding:70px 0 0; }
+    .footer-heading { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--gold-light); margin-bottom:1.25rem; font-weight:600; }
+    .footer-links { list-style:none; padding:0; }
+    .footer-links li { margin-bottom:.5rem; }
+    .footer-links a { color:rgba(255,255,255,.58); text-decoration:none; font-size:.85rem; display:flex; align-items:center; gap:8px; transition:color .2s; }
+    .footer-links a i { font-size:.6rem; color:var(--gold); }
+    .footer-links a:hover { color:var(--gold-light); }
+    .footer-contact-item { display:flex; align-items:flex-start; gap:12px; margin-bottom:1rem; font-size:.85rem; color:rgba(255,255,255,.6); }
+    .footer-contact-item i { color:var(--gold); margin-top:3px; flex-shrink:0; width:16px; }
+    .footer-desc { font-size:.85rem; line-height:1.8; color:rgba(255,255,255,.6); margin:1rem 0 1.5rem; max-width:280px; }
+    .footer-social { display:flex; gap:10px; }
+    .social-btn { width:36px; height:36px; background:rgba(255,255,255,.08); border-radius:4px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.6); text-decoration:none; font-size:.9rem; transition:all .2s; }
+    .social-btn:hover { background:var(--gold); color:var(--green-deep); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.08); padding:1.25rem 0; margin-top:3rem; }
+    .footer-bottom-text { font-size:.78rem; color:rgba(255,255,255,.4); }
+    .footer-bottom-text a { color:var(--gold); text-decoration:none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0; transform:translateY(40px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    @media(max-width:991px) {
+      .ceo-photo-wrap { flex:0 0 100%; min-height:320px; }
+      .story-img-accent { display:none; }
+      .story-badge { left:0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="brand-logo">U</div>
+      <div class="brand-text">
+        <span class="brand-name">UNEEK</span>
+        <span class="brand-tagline">Property Management & Real Estate</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ PAGE HERO ══════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb-bar">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>About Us</span>
+    </div>
+    <h1>About <em>Uneek</em></h1>
+    <p class="page-hero-sub">
+      A team of dedicated professionals committed to transforming Ghana's
+      property landscape through integrity, excellence, and innovation.
+    </p>
+  </div>
+  <div class="hero-bottom-bar"></div>
+</section>
+
+<!-- ══════════════════ COMPANY STORY ══════════════════ -->
+<section class="story-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <!-- Image Stack -->
+      <div class="col-lg-5 reveal">
+        <div class="story-image-stack" style="padding-bottom:2rem;padding-right:2rem;">
+          <img class="story-img-main"
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+            alt="Uneek Office" />
+          <img class="story-img-accent"
+            src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=400&q=70"
+            alt="Property" />
+          <div class="story-badge">
+            <span class="sb-num">08+</span>
+            <span class="sb-lbl">Years of Service</span>
+          </div>
+        </div>
+      </div>
+      <!-- Story Text -->
+      <div class="col-lg-7 reveal">
+        <div class="ps-lg-3">
+          <div class="section-eyebrow">Our Story</div>
+          <h2 class="section-title">Built on a Foundation<br/>of Trust &amp; Dedication</h2>
+          <div class="divider-gold"></div>
+          <p class="section-lead mb-4">
+            Uneek Property Management &amp; Real Estate was founded with a clear purpose:
+            to bridge the gap between property owners seeking reliable management and
+            tenants looking for quality homes in Ghana. What began as a small agency has
+            grown into a comprehensive property services firm trusted by hundreds of clients
+            across Accra and beyond.
+          </p>
+          <p style="font-size:.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:2rem;">
+            Over the years, we have expanded our offerings to include building &amp; construction,
+            professional cleaning services, and investment advisory — becoming a true one-stop
+            shop for all things property. Our growth is a reflection of the trust our clients
+            place in us and the unwavering commitment of our team.
+          </p>
+          <!-- Timeline -->
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">Est. 2016</div>
+              <div class="timeline-title">Company Founded</div>
+              <div class="timeline-text">Uneek launched as a boutique real estate agency focused on property leasing and tenant management in Accra.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2018</div>
+              <div class="timeline-title">Services Expanded</div>
+              <div class="timeline-text">Added full property management services including rent collection, maintenance, and financial reporting.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2021</div>
+              <div class="timeline-title">Construction Division Launched</div>
+              <div class="timeline-text">Established our building &amp; construction arm to serve residential and commercial clients across Greater Accra.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">Today</div>
+              <div class="timeline-title">Growing Stronger</div>
+              <div class="timeline-text">Serving 500+ clients with a full suite of 7 core services and a dedicated team of property professionals.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ STATS BAND ══════════════════ -->
+<div class="stats-band">
+  <div class="container">
+    <div class="row g-4 align-items-center justify-content-center text-center">
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">150+</div><div class="lbl">Properties Managed</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">500+</div><div class="lbl">Happy Clients</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">08+</div><div class="lbl">Years Experience</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-block"><div class="num">7</div><div class="lbl">Core Services</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ MISSION / VISION / VALUES ══════════════════ -->
+<section class="mvv-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow justify-content-center">Our Purpose</div>
+        <h2 class="section-title">Mission, Vision &amp; Values</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="section-lead mx-auto">The guiding principles that define who we are and how we serve every client, every day.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <!-- Mission -->
+      <div class="col-lg-4 reveal">
+        <div class="mvv-card mission">
+          <div class="mvv-icon"><i class="fas fa-bullseye"></i></div>
+          <h3>Our Mission</h3>
+          <p>To deliver exceptional, transparent, and reliable property management and real estate services that protect our clients' investments, create great tenant experiences, and contribute to the development of quality living and working spaces across Ghana.</p>
+        </div>
+      </div>
+      <!-- Vision -->
+      <div class="col-lg-4 reveal">
+        <div class="mvv-card vision">
+          <div class="mvv-icon"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>To be Ghana's most trusted and respected property management and real estate company — recognised for our integrity, innovation, and commitment to excellence in every property we touch and every client we serve.</p>
+        </div>
+      </div>
+      <!-- Values -->
+      <div class="col-lg-4 reveal">
+        <div class="mvv-card values">
+          <div class="mvv-icon"><i class="fas fa-gem"></i></div>
+          <h3>Core Values</h3>
+          <ul class="values-list">
+            <li><i class="fas fa-check-circle"></i> <div><strong>Integrity</strong> — Honest, transparent dealings in everything we do</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Excellence</strong> — Delivering quality above and beyond expectations</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Accountability</strong> — Owning our results and our commitments</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Innovation</strong> — Embracing better ways to serve our clients</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Client Focus</strong> — Putting our clients' needs at the centre</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ OBJECTIVES ══════════════════ -->
+<section class="objectives-section">
+  <div class="container position-relative">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow light justify-content-center">What Drives Us</div>
+        <h2 class="section-title light">Our Company Objectives</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="section-lead light mx-auto">Clear goals that guide every decision we make as a company and as a team.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="objective-item">
+          <div class="obj-num">01</div>
+          <div class="obj-content">
+            <h5>Maximize Property Returns</h5>
+            <p>Help property owners achieve the highest possible rental yields through strategic tenant placement, competitive pricing, and proactive property upkeep.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="objective-item">
+          <div class="obj-num">02</div>
+          <div class="obj-content">
+            <h5>Deliver Quality Tenancy</h5>
+            <p>Provide tenants with safe, well-maintained homes and responsive management that makes renting with Uneek a positive, stress-free experience.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="objective-item">
+          <div class="obj-num">03</div>
+          <div class="obj-content">
+            <h5>Grow Real Estate Investment</h5>
+            <p>Guide investors to smart, profitable real estate decisions through market expertise, due diligence, and trusted advisory services.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="objective-item">
+          <div class="obj-num">04</div>
+          <div class="obj-content">
+            <h5>Build with Quality &amp; Integrity</h5>
+            <p>Deliver construction projects that meet the highest standards of quality, safety, and design — on time and on budget.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="objective-item">
+          <div class="obj-num">05</div>
+          <div class="obj-content">
+            <h5>Maintain Clean Environments</h5>
+            <p>Ensure properties are kept clean, hygienic, and presentable through professional cleaning programs for residential and commercial spaces.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="objective-item">
+          <div class="obj-num">06</div>
+          <div class="obj-content">
+            <h5>Contribute to Community Development</h5>
+            <p>Play a meaningful role in improving Ghana's built environment by developing quality properties and raising standards across the industry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOUNDER / CEO ══════════════════ -->
+<section class="team-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-eyebrow justify-content-center">Leadership</div>
+        <h2 class="section-title">Meet Our Founder &amp; CEO</h2>
+        <div class="divider-gold mx-auto"></div>
+      </div>
+    </div>
+    <!-- CEO Card -->
+    <div class="ceo-card reveal mb-5">
+      <div class="ceo-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="CEO" />
+        <div class="ceo-photo-badge">Founder &amp; CEO</div>
+      </div>
+      <div class="ceo-info">
+        <div class="ceo-tag">Leadership</div>
+        <div class="ceo-name">[CEO Full Name]</div>
+        <div class="ceo-role">Founder &amp; Chief Executive Officer, Uneek Property Management</div>
+        <div class="ceo-stats">
+          <div>
+            <div class="ceo-stat-num">08+</div>
+            <div class="ceo-stat-lbl">Years in Real Estate</div>
+          </div>
+          <div>
+            <div class="ceo-stat-num">150+</div>
+            <div class="ceo-stat-lbl">Properties Overseen</div>
+          </div>
+          <div>
+            <div class="ceo-stat-num">500+</div>
+            <div class="ceo-stat-lbl">Clients Served</div>
+          </div>
+        </div>
+        <p class="ceo-bio">
+          [CEO Name] is the visionary founder of Uneek Property Management &amp; Real Estate.
+          With over 8 years of experience in Ghana's property sector, [he/she] built Uneek from
+          the ground up with a commitment to professionalism, transparency, and client satisfaction.
+          Under [his/her] leadership, Uneek has grown from a boutique agency into a full-service
+          property management and construction firm serving hundreds of clients across Accra and
+          Greater Ghana.
+        </p>
+        <p class="ceo-bio" style="margin-top:-.5rem;">
+          [He/She] holds [qualifications placeholder] and is passionate about elevating the standard
+          of property management in Ghana while empowering property owners to maximise the value
+          of their investments.
+        </p>
+        <div class="d-flex gap-3 mb-3">
+          <a href="tel:+233000000000" class="btn-gold" style="padding:.65rem 1.4rem;font-size:.78rem;"><i class="fas fa-phone"></i> Call Directly</a>
+          <a href="https://wa.me/233000000000" class="btn-outline-green" style="padding:.65rem 1.4rem;font-size:.78rem;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <div class="ceo-socials">
+          <a href="#" class="ceo-social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="ceo-social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="ceo-social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="ceo-social-btn"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Members (Optional) -->
+    <div class="row justify-content-center text-center mb-4 reveal">
+      <div class="col-lg-6">
+        <div class="section-eyebrow justify-content-center">The Team</div>
+        <h2 class="section-title">The People Behind Uneek</h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="section-lead mx-auto">A dedicated team of property professionals committed to your success.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <!-- Team Member 1 -->
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80" alt="Team Member" />
+            <div class="team-photo-overlay">
+              <div class="team-social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-role">Property Manager</div>
+            <div class="team-name">[Team Member Name]</div>
+            <div class="team-desc">Oversees day-to-day operations and client relations for managed properties.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 2 -->
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Team Member" />
+            <div class="team-photo-overlay">
+              <div class="team-social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-role">Real Estate Agent</div>
+            <div class="team-name">[Team Member Name]</div>
+            <div class="team-desc">Expert in property sales, acquisitions and real estate investment advisory.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Team Member" />
+            <div class="team-photo-overlay">
+              <div class="team-social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-role">Finance &amp; Accounts</div>
+            <div class="team-name">[Team Member Name]</div>
+            <div class="team-desc">Manages financial reporting, rent accounting and client disbursements.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 4 -->
+      <div class="col-sm-6 col-lg-3 reveal">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Team Member" />
+            <div class="team-photo-overlay">
+              <div class="team-social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-role">Construction Manager</div>
+            <div class="team-name">[Team Member Name]</div>
+            <div class="team-desc">Leads our building and construction division from planning to project completion.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CTA ══════════════════ -->
+<section style="background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);padding:80px 0;">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7 reveal">
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--green-deep);margin-bottom:1rem;">Ready to Work with Our Team?</h2>
+        <p style="font-size:.95rem;color:rgba(13,51,32,.75);max-width:480px;line-height:1.75;">Whether you need property management, a real estate agent, or a construction team — we're here to help. Let's talk today.</p>
+      </div>
+      <div class="col-lg-5 reveal">
+        <div class="d-flex flex-wrap gap-3 justify-content-lg-end">
+          <a href="contact.html" style="background:var(--green-deep);color:var(--white);border:none;padding:.9rem 2.2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;">
+            <i class="fas fa-envelope"></i> Contact Us
+          </a>
+          <a href="services.html" style="background:transparent;color:var(--green-deep);border:2px solid var(--green-deep);padding:.88rem 2.2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;">
+            <i class="fas fa-th-large"></i> Our Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="text-decoration:none;">
+          <div class="brand-logo">U</div>
+          <div class="brand-text ms-3">
+            <span class="brand-name">UNEEK</span>
+            <span class="brand-tagline">Property Management & Real Estate</span>
+          </div>
+        </a>
+        <p class="footer-desc">Ghana's trusted partner for property management, real estate agency, construction, and cleaning services. Excellence in every detail.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-heading">Our Services</div>
+        <ul class="footer-links">
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Tenant Screening</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Rent Collection</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Property Maintenance</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Financial Reporting</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Real Estate Agency</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Building & Construction</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Cleaning Services</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-heading">Contact Us</div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> [Address Placeholder], Accra, Ghana</div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i> [Phone Placeholder]</div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i> [Email Placeholder]</div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i> [WhatsApp Placeholder]</div>
+        <div class="footer-contact-item"><i class="far fa-clock"></i> Mon–Sat: 8:00am – 6:00pm</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6"><div class="footer-bottom-text">© 2025 Uneek Property Management & Real Estate. All rights reserved.</div></div>
+        <div class="col-md-6 text-md-end"><div class="footer-bottom-text"><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING BUTTONS ── -->
+<div class="floating-buttons">
+  <a href="https://wa.me/233000000000" target="_blank" class="float-btn float-whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+233000000000" class="float-btn float-call" title="Call Us"><i class="fas fa-phone"></i></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
