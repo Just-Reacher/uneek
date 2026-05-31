@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Service | Uneek Property Management & Real Estate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+</head>
+  <style>
+    :root {
+      --green-deep:  #0d3320;
+      --green-mid:   #1a5c38;
+      --green-light: #2a7a4e;
+      --gold:        #c9a84c;
+      --gold-light:  #e8c96a;
+      --gold-pale:   #f5e9c4;
+      --white:       #ffffff;
+      --off-white:   #f9f7f2;
+      --text-dark:   #1a1a1a;
+      --text-mid:    #444444;
+      --text-light:  #777777;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden;}
+    h1,h2,h3,h4,h5{font-family:'Cormorant Garamond',serif;}
+
+    /* ── NAVBAR ── */
+    .navbar{background:transparent;padding:1.4rem 0;position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .4s;}
+    .navbar.scrolled{background:var(--green-deep);padding:.9rem 0;box-shadow:0 4px 30px rgba(0,0,0,.3);}
+    .navbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .brand-logo{width:46px;height:46px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--green-deep);flex-shrink:0;}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1;}
+    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:.04em;}
+    .brand-tagline{font-size:.65rem;color:var(--gold-light);letter-spacing:.15em;text-transform:uppercase;}
+    .navbar-nav .nav-link{color:rgba(255,255,255,.88)!important;font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem!important;transition:color .2s;position:relative;}
+    .navbar-nav .nav-link::after{content:'';position:absolute;bottom:-2px;left:50%;right:50%;height:2px;background:var(--gold);transition:all .3s;}
+    .navbar-nav .nav-link:hover{color:var(--gold-light)!important;}
+    .navbar-nav .nav-link:hover::after{left:1rem;right:1rem;}
+    .nav-cta{background:var(--gold)!important;color:var(--green-deep)!important;border-radius:4px;padding:.5rem 1.2rem!important;font-weight:600!important;margin-left:.5rem;}
+    .nav-cta:hover{background:var(--gold-light)!important;}
+    .navbar-toggler{border-color:rgba(255,255,255,.3);}
+    .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+
+    /* ── PAGE HERO ── */
+    .page-hero{min-height:42vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+    .page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1800&q=80') center/cover no-repeat;}
+    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(13,51,32,.97) 0%,rgba(13,51,32,.80) 60%,rgba(13,51,32,.55) 100%);}
+    .page-hero-content{position:relative;z-index:2;padding-top:120px;padding-bottom:60px;}
+    .breadcrumb-bar{display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.2rem;}
+    .breadcrumb-bar a{color:var(--gold-light);text-decoration:none;}
+    .breadcrumb-bar i{font-size:.55rem;}
+    .page-hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:1rem;animation:fadeUp .8s .3s both;}
+    .page-hero h1 em{color:var(--gold-light);font-style:normal;}
+    .page-hero-sub{font-size:.95rem;color:rgba(255,255,255,.68);max-width:520px;line-height:1.8;animation:fadeUp .8s .5s both;}
+    .hero-bottom-bar{position:absolute;bottom:0;left:0;right:0;background:var(--gold);height:5px;}
+
+    /* ── LAST UPDATED STRIP ── */
+    .update-strip{background:var(--gold-pale);border-bottom:1px solid rgba(201,168,76,.25);padding:.9rem 0;}
+    .update-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;}
+    .update-badge{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--green-deep);}
+    .update-badge i{color:var(--gold);}
+    .update-badge strong{font-weight:600;}
+    .print-btn{display:inline-flex;align-items:center;gap:7px;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-mid);cursor:pointer;background:none;border:1px solid var(--green-mid);padding:.38rem 1rem;border-radius:3px;transition:all .2s;font-family:'DM Sans',sans-serif;}
+    .print-btn:hover{background:var(--green-deep);color:var(--white);border-color:var(--green-deep);}
+
+    /* ── LAYOUT ── */
+    .terms-layout{padding:80px 0 100px;background:var(--white);}
+
+    /* ── SIDEBAR TOC ── */
+    .toc-sidebar{position:sticky;top:90px;}
+    .toc-card{background:var(--off-white);border-radius:8px;padding:1.75rem;border:1px solid rgba(0,0,0,.07);}
+    .toc-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--green-deep);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--gold);display:flex;align-items:center;gap:8px;}
+    .toc-title i{color:var(--gold);font-size:1rem;}
+    .toc-list{list-style:none;padding:0;}
+    .toc-list li{margin-bottom:.2rem;}
+    .toc-list a{display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--text-mid);text-decoration:none;padding:.42rem .6rem;border-radius:4px;transition:all .2s;border-left:2px solid transparent;}
+    .toc-list a:hover{color:var(--green-mid);background:rgba(26,92,56,.06);border-left-color:var(--gold);}
+    .toc-list a.active{color:var(--green-deep);background:rgba(26,92,56,.08);border-left-color:var(--gold);font-weight:600;}
+    .toc-list a .toc-num{font-size:.68rem;font-weight:700;color:var(--gold);min-width:18px;}
+
+    /* Need help card */
+    .help-card{background:var(--green-deep);border-radius:8px;padding:1.75rem;margin-top:1.5rem;text-align:center;}
+    .help-card i{font-size:2rem;color:var(--gold);margin-bottom:.75rem;display:block;}
+    .help-card h5{font-size:1.1rem;color:var(--white);margin-bottom:.5rem;}
+    .help-card p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:1.25rem;}
+    .help-btn{display:block;background:var(--gold);color:var(--green-deep);padding:.65rem 1rem;border-radius:4px;text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;margin-bottom:.6rem;}
+    .help-btn:hover{background:var(--gold-light);color:var(--green-deep);}
+    .help-btn.wa{background:#25D366;color:var(--white);}
+    .help-btn.wa:hover{background:#1fba58;}
+
+    /* ── TERMS CONTENT ── */
+    .terms-content{}
+    .terms-section{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(0,0,0,.07);}
+    .terms-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+    .section-number{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+    .section-heading{font-size:clamp(1.5rem,2.8vw,2rem);color:var(--green-deep);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;}
+    .section-heading i{font-size:1.2rem;color:var(--gold);flex-shrink:0;}
+    .divider-gold{width:50px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin-bottom:1.5rem;}
+    .terms-text{font-size:.93rem;color:var(--text-mid);line-height:1.9;margin-bottom:1.25rem;}
+    .terms-text:last-child{margin-bottom:0;}
+    .terms-list{list-style:none;padding:0;margin-bottom:1.25rem;}
+    .terms-list li{display:flex;align-items:flex-start;gap:10px;padding:.5rem 0;font-size:.91rem;color:var(--text-mid);line-height:1.75;border-bottom:1px solid rgba(0,0,0,.05);}
+    .terms-list li:last-child{border-bottom:none;}
+    .terms-list li i{color:var(--gold);margin-top:4px;flex-shrink:0;font-size:.8rem;}
+    .terms-highlight{background:var(--gold-pale);border-left:4px solid var(--gold);padding:1.25rem 1.5rem;border-radius:0 6px 6px 0;margin:1.5rem 0;font-size:.9rem;color:var(--green-deep);line-height:1.75;}
+    .terms-highlight strong{font-weight:600;}
+    .terms-warning{background:#fff8f0;border-left:4px solid #e07b2a;padding:1.25rem 1.5rem;border-radius:0 6px 6px 0;margin:1.5rem 0;font-size:.9rem;color:#7a3b00;line-height:1.75;}
+    .terms-warning i{color:#e07b2a;margin-right:6px;}
+    .definition-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:1.25rem;}
+    .definition-table th{background:var(--green-deep);color:var(--white);padding:.75rem 1rem;text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
+    .definition-table td{padding:.75rem 1rem;border-bottom:1px solid rgba(0,0,0,.07);color:var(--text-mid);vertical-align:top;line-height:1.7;}
+    .definition-table tr:nth-child(even) td{background:var(--off-white);}
+    .definition-table td:first-child{font-weight:600;color:var(--green-deep);white-space:nowrap;}
+
+    /* ── AGREEMENT BANNER ── */
+    .agreement-banner{background:var(--green-deep);border-radius:8px;padding:2rem 2.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;margin-bottom:3.5rem;}
+    .agreement-text{flex:1;min-width:250px;}
+    .agreement-text h4{font-size:1.35rem;color:var(--gold-light);margin-bottom:.4rem;}
+    .agreement-text p{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.7;}
+    .agreement-actions{display:flex;gap:.75rem;flex-wrap:wrap;}
+    .btn-agree{background:var(--gold);color:var(--green-deep);border:none;padding:.75rem 1.75rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s;font-family:'DM Sans',sans-serif;}
+    .btn-agree:hover{background:var(--gold-light);}
+    .btn-print{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.25);padding:.75rem 1.75rem;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s;font-family:'DM Sans',sans-serif;}
+    .btn-print:hover{border-color:var(--white);color:var(--white);}
+
+    /* ── FLOATING / FOOTER ── */
+    .floating-buttons{position:fixed;bottom:2rem;right:2rem;display:flex;flex-direction:column;gap:.75rem;z-index:999;}
+    .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:all .25s;}
+    .float-btn:hover{transform:scale(1.1);}
+    .float-whatsapp{background:#25D366;color:var(--white);}
+    .float-call{background:var(--gold);color:var(--green-deep);}
+    /* Back to top */
+    .back-top{position:fixed;bottom:6.5rem;right:2rem;width:42px;height:42px;background:var(--green-deep);border:1px solid rgba(255,255,255,.15);border-radius:50%;display:none;align-items:center;justify-content:center;color:var(--white);font-size:.9rem;cursor:pointer;z-index:999;transition:all .25s;text-decoration:none;}
+    .back-top.show{display:flex;}
+    .back-top:hover{background:var(--gold);color:var(--green-deep);}
+
+    footer{background:var(--green-deep);color:rgba(255,255,255,.75);padding:70px 0 0;}
+    .footer-heading{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:1.25rem;font-weight:600;}
+    .footer-links{list-style:none;padding:0;}
+    .footer-links li{margin-bottom:.5rem;}
+    .footer-links a{color:rgba(255,255,255,.58);text-decoration:none;font-size:.85rem;display:flex;align-items:center;gap:8px;transition:color .2s;}
+    .footer-links a i{font-size:.6rem;color:var(--gold);}
+    .footer-links a:hover{color:var(--gold-light);}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem;font-size:.85rem;color:rgba(255,255,255,.6);}
+    .footer-contact-item i{color:var(--gold);margin-top:3px;flex-shrink:0;width:16px;}
+    .footer-desc{font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6);margin:1rem 0 1.5rem;max-width:280px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:all .2s;}
+    .social-btn:hover{background:var(--gold);color:var(--green-deep);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:1.25rem 0;margin-top:3rem;}
+    .footer-bottom-text{font-size:.78rem;color:rgba(255,255,255,.4);}
+    .footer-bottom-text a{color:var(--gold);text-decoration:none;}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+
+    @media print{
+      .navbar,.floating-buttons,.back-top,.update-strip .print-btn,.agreement-banner,.footer,.page-hero-sub,footer{display:none!important;}
+      .terms-layout{padding:20px 0;}
+      .toc-sidebar{display:none;}
+      .terms-content{width:100%!important;max-width:100%!important;flex:0 0 100%!important;}
+    }
+    @media(max-width:991px){.toc-sidebar{position:relative;top:auto;}}
+  </style>
+</head>
+<body>
+
+<!-- ══════ NAVBAR ══════ -->
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="brand-logo">U</div>
+      <div class="brand-text">
+        <span class="brand-name">UNEEK</span>
+        <span class="brand-tagline">Property Management & Real Estate</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════ PAGE HERO ══════ -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb-bar">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Terms of Service</span>
+    </div>
+    <h1>Terms of <em>Service</em></h1>
+    <p class="page-hero-sub">Please read these terms carefully before using our services or this website. Your use of Uneek's services constitutes acceptance of these terms.</p>
+  </div>
+  <div class="hero-bottom-bar"></div>
+</section>
+
+<!-- ══════ LAST UPDATED STRIP ══════ -->
+<div class="update-strip">
+  <div class="container">
+    <div class="update-inner">
+      <div class="d-flex flex-wrap gap-4">
+        <div class="update-badge"><i class="fas fa-calendar-alt"></i> <strong>Last Updated:</strong> &nbsp;1 January 2025</div>
+        <div class="update-badge"><i class="fas fa-file-alt"></i> <strong>Version:</strong> &nbsp;1.0</div>
+        <div class="update-badge"><i class="fas fa-map-marker-alt"></i> <strong>Jurisdiction:</strong> &nbsp;Republic of Ghana</div>
+      </div>
+      <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ MAIN CONTENT ══════ -->
+<section class="terms-layout">
+  <div class="container">
+
+    <!-- Agreement Banner -->
+    <div class="agreement-banner reveal">
+      <div class="agreement-text">
+        <h4><i class="fas fa-handshake me-2"></i> Agreement to Terms</h4>
+        <p>By accessing our website or engaging our services, you confirm that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy.</p>
+      </div>
+      <div class="agreement-actions">
+        <button class="btn-agree" onclick="this.innerHTML='<i class=\'fas fa-check\'></i> &nbsp;Agreed';this.style.background='#2a7a4e';this.style.color='#fff';this.disabled=true;">
+          <i class="fas fa-check-circle"></i> I Agree
+        </button>
+        <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+      </div>
+    </div>
+
+    <div class="row g-5">
+
+      <!-- ── SIDEBAR TOC ── -->
+      <div class="col-lg-3 order-lg-1 order-2">
+        <div class="toc-sidebar">
+          <div class="toc-card">
+            <div class="toc-title"><i class="fas fa-list-ul"></i> Contents</div>
+            <ul class="toc-list">
+              <li><a href="#s1" class="toc-link"><span class="toc-num">01</span> Definitions</a></li>
+              <li><a href="#s2" class="toc-link"><span class="toc-num">02</span> Acceptance of Terms</a></li>
+              <li><a href="#s3" class="toc-link"><span class="toc-num">03</span> Our Services</a></li>
+              <li><a href="#s4" class="toc-link"><span class="toc-num">04</span> Client Obligations</a></li>
+              <li><a href="#s5" class="toc-link"><span class="toc-num">05</span> Fees & Payments</a></li>
+              <li><a href="#s6" class="toc-link"><span class="toc-num">06</span> Property Management</a></li>
+              <li><a href="#s7" class="toc-link"><span class="toc-num">07</span> Tenant Relations</a></li>
+              <li><a href="#s8" class="toc-link"><span class="toc-num">08</span> Construction Services</a></li>
+              <li><a href="#s9" class="toc-link"><span class="toc-num">09</span> Limitation of Liability</a></li>
+              <li><a href="#s10" class="toc-link"><span class="toc-num">10</span> Confidentiality</a></li>
+              <li><a href="#s11" class="toc-link"><span class="toc-num">11</span> Intellectual Property</a></li>
+              <li><a href="#s12" class="toc-link"><span class="toc-num">12</span> Termination</a></li>
+              <li><a href="#s13" class="toc-link"><span class="toc-num">13</span> Dispute Resolution</a></li>
+              <li><a href="#s14" class="toc-link"><span class="toc-num">14</span> Governing Law</a></li>
+              <li><a href="#s15" class="toc-link"><span class="toc-num">15</span> Contact Information</a></li>
+            </ul>
+          </div>
+
+          <!-- Need Help Card -->
+          <div class="help-card">
+            <i class="fas fa-question-circle"></i>
+            <h5>Need Clarification?</h5>
+            <p>Have questions about these terms? Our team is happy to explain anything.</p>
+            <a href="contact.html" class="help-btn"><i class="fas fa-envelope me-1"></i> Send a Message</a>
+            <a href="https://wa.me/233000000000" class="help-btn wa"><i class="fab fa-whatsapp me-1"></i> WhatsApp Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TERMS BODY ── -->
+      <div class="col-lg-9 order-lg-2 order-1 terms-content">
+
+        <!-- S1 Definitions -->
+        <div class="terms-section reveal" id="s1">
+          <div class="section-number">Section 01</div>
+          <h2 class="section-heading"><i class="fas fa-book-open"></i> Definitions</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">In these Terms of Service, the following definitions apply unless the context requires otherwise:</p>
+          <table class="definition-table">
+            <thead>
+              <tr><th>Term</th><th>Definition</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>"Company" / "Uneek"</td><td>Uneek Property Management & Real Estate, a property services company registered and operating in Ghana.</td></tr>
+              <tr><td>"Client"</td><td>Any individual, business, or entity that engages Uneek for any of its services, including property owners, landlords, investors, and construction clients.</td></tr>
+              <tr><td>"Tenant"</td><td>Any individual or entity occupying a property managed by Uneek under a valid tenancy or lease agreement.</td></tr>
+              <tr><td>"Services"</td><td>All services offered by Uneek including but not limited to property management, tenant screening, rent collection, maintenance, real estate agency, construction, and cleaning services.</td></tr>
+              <tr><td>"Agreement"</td><td>Any service contract, management agreement, lease, or written arrangement entered into between Uneek and a Client.</td></tr>
+              <tr><td>"Website"</td><td>The Uneek website and all associated web pages, content, and digital assets.</td></tr>
+              <tr><td>"Fees"</td><td>All charges, commissions, retainers, and payments due to Uneek for services rendered.</td></tr>
+              <tr><td>"Property"</td><td>Any real estate, building, land, or premises that is the subject of a service agreement with Uneek.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- S2 Acceptance -->
+        <div class="terms-section reveal" id="s2">
+          <div class="section-number">Section 02</div>
+          <h2 class="section-heading"><i class="fas fa-file-signature"></i> Acceptance of Terms</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">By accessing this website, contacting Uneek, or engaging any of our services, you acknowledge that you have read, understood, and agree to be legally bound by these Terms of Service.</p>
+          <div class="terms-highlight">
+            <strong>Important:</strong> If you do not agree with any part of these terms, you must not use our website or engage our services. Continued use of our services after any amendment to these Terms constitutes acceptance of the revised Terms.
+          </div>
+          <p class="terms-text">These Terms apply to all visitors, clients, tenants, and others who access or use our services. They are effective as of the date first set out above and supersede all prior agreements between the parties relating to the subject matter herein.</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> You must be at least 18 years of age to enter into a service agreement with Uneek.</li>
+            <li><i class="fas fa-circle"></i> Businesses or organisations must be duly registered and authorised to enter contracts under Ghanaian law.</li>
+            <li><i class="fas fa-circle"></i> You represent that all information provided to Uneek is accurate, complete, and truthful.</li>
+          </ul>
+        </div>
+
+        <!-- S3 Services -->
+        <div class="terms-section reveal" id="s3">
+          <div class="section-number">Section 03</div>
+          <h2 class="section-heading"><i class="fas fa-concierge-bell"></i> Our Services</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">Uneek Property Management & Real Estate provides a comprehensive range of property services in Ghana. The specific scope, terms, timelines, and fees applicable to each service engagement will be set out in a separate written Service Agreement or Contract.</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-check-circle"></i> <div><strong>Tenant Screening & Leasing:</strong> Background checks, reference verification, lease preparation, and tenancy onboarding on behalf of property owners.</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Rent Collection:</strong> Collection, processing, and disbursement of rental income with full accounting records.</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Property Maintenance:</strong> Coordination of routine and emergency maintenance, repairs, and inspections.</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Financial Reporting:</strong> Monthly and annual financial statements, rent rolls, and expenditure summaries.</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Real Estate Agency:</strong> Property sales, acquisitions, valuations, and investment advisory services.</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Building & Construction:</strong> New builds, renovations, extensions, and construction project management.</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Cleaning Services:</strong> Residential and commercial cleaning, end-of-tenancy cleans, and post-construction cleaning.</div></li>
+          </ul>
+          <div class="terms-warning"><i class="fas fa-exclamation-triangle"></i> Uneek reserves the right to refuse or discontinue any service at its discretion where it determines that providing the service would be contrary to law, ethics, or the Company's policies.</div>
+        </div>
+
+        <!-- S4 Client Obligations -->
+        <div class="terms-section reveal" id="s4">
+          <div class="section-number">Section 04</div>
+          <h2 class="section-heading"><i class="fas fa-user-check"></i> Client Obligations</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">Clients engaging Uneek's services agree to the following obligations throughout the duration of any service agreement:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> Provide accurate, complete, and up-to-date information regarding the property and any relevant circumstances.</li>
+            <li><i class="fas fa-circle"></i> Cooperate fully with Uneek's team and respond to communications promptly and in a timely manner.</li>
+            <li><i class="fas fa-circle"></i> Ensure that all necessary legal documents, permits, and authorisations relating to the property are valid and in order.</li>
+            <li><i class="fas fa-circle"></i> Pay all fees, charges, and disbursements due to Uneek on time and in accordance with the agreed payment schedule.</li>
+            <li><i class="fas fa-circle"></i> Not engage any third-party service provider for the same scope of services covered by a Uneek agreement without prior written consent.</li>
+            <li><i class="fas fa-circle"></i> Not instruct tenants, contractors, or other parties to bypass Uneek in matters covered under a management agreement.</li>
+            <li><i class="fas fa-circle"></i> Maintain adequate insurance on any property managed or constructed by Uneek.</li>
+            <li><i class="fas fa-circle"></i> Disclose any encumbrances, disputes, litigation, or restrictions affecting the property prior to engagement.</li>
+          </ul>
+        </div>
+
+        <!-- S5 Fees & Payments -->
+        <div class="terms-section reveal" id="s5">
+          <div class="section-number">Section 05</div>
+          <h2 class="section-heading"><i class="fas fa-hand-holding-usd"></i> Fees & Payments</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">All fees for Uneek's services will be outlined in the relevant Service Agreement prior to commencement of work. The following general payment terms apply:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> All fees are quoted in Ghana Cedis (GHS) unless otherwise agreed in writing.</li>
+            <li><i class="fas fa-circle"></i> Invoices are payable within the timeframe specified in the Service Agreement, typically within 7–14 days of issue.</li>
+            <li><i class="fas fa-circle"></i> Late payments may attract a penalty charge as specified in the individual service contract.</li>
+            <li><i class="fas fa-circle"></i> Management fees are typically deducted from collected rent before disbursement to the property owner.</li>
+            <li><i class="fas fa-circle"></i> Agency commissions for property sales or lettings are due upon successful completion of the transaction.</li>
+            <li><i class="fas fa-circle"></i> Construction project payments are made in stages as outlined in the project contract and milestone schedule.</li>
+            <li><i class="fas fa-circle"></i> All disbursements for maintenance, repairs, or other approved expenditure will be documented and accounted for in financial reports.</li>
+          </ul>
+          <div class="terms-highlight"><strong>Note:</strong> Uneek does not accept responsibility for any delays in service caused by late or withheld payment. Uneek reserves the right to suspend services where payment obligations are not met.</div>
+        </div>
+
+        <!-- S6 Property Management -->
+        <div class="terms-section reveal" id="s6">
+          <div class="section-number">Section 06</div>
+          <h2 class="section-heading"><i class="fas fa-building"></i> Property Management Terms</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">Where Uneek is engaged to manage a property on behalf of an owner, the following specific terms apply in addition to the general terms above:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> Uneek will act as the authorised agent of the property owner for the purposes set out in the Management Agreement.</li>
+            <li><i class="fas fa-circle"></i> Uneek will exercise reasonable care and skill in managing the property but does not guarantee continuous occupancy or a specific rental income level.</li>
+            <li><i class="fas fa-circle"></i> Rent collected will be held in a designated account and disbursed to the property owner after deduction of authorised fees and expenses.</li>
+            <li><i class="fas fa-circle"></i> Uneek will carry out routine property inspections at agreed intervals and report findings to the owner.</li>
+            <li><i class="fas fa-circle"></i> Minor maintenance works below an agreed threshold amount may be authorised and carried out by Uneek without prior owner approval.</li>
+            <li><i class="fas fa-circle"></i> Major repairs or capital expenditure will require prior written authorisation from the property owner.</li>
+            <li><i class="fas fa-circle"></i> The property owner remains the legal owner and is responsible for all statutory obligations, including land rates, utility connections, and compliance with building codes.</li>
+          </ul>
+        </div>
+
+        <!-- S7 Tenant Relations -->
+        <div class="terms-section reveal" id="s7">
+          <div class="section-number">Section 07</div>
+          <h2 class="section-heading"><i class="fas fa-users"></i> Tenant Relations</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">Uneek is committed to fair, professional, and respectful relationships with all tenants. Tenants occupying properties managed by Uneek agree to the following:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> Tenants must comply with all terms of their lease or tenancy agreement at all times.</li>
+            <li><i class="fas fa-circle"></i> Rent must be paid in full and on time as set out in the tenancy agreement.</li>
+            <li><i class="fas fa-circle"></i> All maintenance requests must be submitted through Uneek's official channels.</li>
+            <li><i class="fas fa-circle"></i> Tenants must not make any alterations to the property without prior written approval from Uneek or the property owner.</li>
+            <li><i class="fas fa-circle"></i> Tenants must provide reasonable access for inspections and approved maintenance works with appropriate notice.</li>
+            <li><i class="fas fa-circle"></i> Sub-letting or assignment of a tenancy is not permitted without prior written consent from Uneek.</li>
+          </ul>
+          <p class="terms-text">Uneek will handle all tenant disputes, complaints, and communications professionally and in accordance with applicable Ghanaian housing laws and regulations.</p>
+        </div>
+
+        <!-- S8 Construction -->
+        <div class="terms-section reveal" id="s8">
+          <div class="section-number">Section 08</div>
+          <h2 class="section-heading"><i class="fas fa-hard-hat"></i> Construction Services</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">Where Uneek is engaged to carry out building or construction works, the following specific terms apply:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> All construction works will be governed by a separate written Construction Contract specifying scope, timeline, payment schedule, and warranties.</li>
+            <li><i class="fas fa-circle"></i> The client is responsible for obtaining all necessary planning permissions, building permits, and regulatory approvals prior to commencement of works.</li>
+            <li><i class="fas fa-circle"></i> Uneek will carry out works with reasonable skill and care in accordance with the agreed specifications and applicable Ghanaian building standards.</li>
+            <li><i class="fas fa-circle"></i> Any variations to the agreed scope of work must be authorised in writing by the client and may result in additional costs and timeline adjustments.</li>
+            <li><i class="fas fa-circle"></i> Uneek will not be liable for delays caused by factors outside its reasonable control, including weather, supply chain disruptions, or client-caused delays.</li>
+            <li><i class="fas fa-circle"></i> A defects liability period will be specified in the Construction Contract, during which Uneek will remedy identified defects arising from workmanship.</li>
+          </ul>
+          <div class="terms-warning"><i class="fas fa-exclamation-triangle"></i> Uneek does not provide structural engineering certifications or architectural design services unless explicitly stated in the service agreement. Clients should engage qualified professionals for these aspects.</div>
+        </div>
+
+        <!-- S9 Limitation of Liability -->
+        <div class="terms-section reveal" id="s9">
+          <div class="section-number">Section 09</div>
+          <h2 class="section-heading"><i class="fas fa-shield-alt"></i> Limitation of Liability</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">To the maximum extent permitted by applicable law in Ghana, Uneek's liability to any client or third party arising out of or in connection with any service is limited as follows:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> Uneek shall not be liable for any indirect, incidental, consequential, or punitive damages, including loss of profit, loss of rental income, or loss of business opportunity.</li>
+            <li><i class="fas fa-circle"></i> Uneek's total liability to a client in respect of any single claim shall not exceed the total fees paid to Uneek under the relevant service agreement in the 3 months preceding the claim.</li>
+            <li><i class="fas fa-circle"></i> Uneek shall not be liable for losses arising from tenant default, vacancy, market fluctuations, or changes in property value.</li>
+            <li><i class="fas fa-circle"></i> Uneek shall not be responsible for damage caused by acts of God, natural disasters, theft, vandalism, or third-party contractors not engaged by Uneek.</li>
+            <li><i class="fas fa-circle"></i> Nothing in these terms limits Uneek's liability for fraud, gross negligence, or wilful misconduct.</li>
+          </ul>
+        </div>
+
+        <!-- S10 Confidentiality -->
+        <div class="terms-section reveal" id="s10">
+          <div class="section-number">Section 10</div>
+          <h2 class="section-heading"><i class="fas fa-lock"></i> Confidentiality & Privacy</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">Uneek is committed to protecting the privacy and confidentiality of all client information. We will not disclose any personal or financial information provided by clients to third parties except:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> Where required by law or a court order.</li>
+            <li><i class="fas fa-circle"></i> Where disclosure is necessary for the performance of the agreed services (e.g. sharing information with contractors, tenants, or professional advisors).</li>
+            <li><i class="fas fa-circle"></i> Where the client has given prior written consent.</li>
+          </ul>
+          <p class="terms-text">Clients also agree to keep confidential any proprietary information, pricing, processes, or materials shared by Uneek in the course of a service engagement. Our full Privacy Policy governs the collection and use of personal data and is available on request.</p>
+        </div>
+
+        <!-- S11 Intellectual Property -->
+        <div class="terms-section reveal" id="s11">
+          <div class="section-number">Section 11</div>
+          <h2 class="section-heading"><i class="fas fa-copyright"></i> Intellectual Property</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">All content on this website — including text, images, logos, graphics, videos, and design — is the intellectual property of Uneek Property Management & Real Estate and is protected under applicable Ghanaian and international copyright laws.</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> You may not reproduce, copy, distribute, or use any content from this website without prior written permission from Uneek.</li>
+            <li><i class="fas fa-circle"></i> The Uneek name, logo, and brand are trademarks of the Company and may not be used without authorisation.</li>
+            <li><i class="fas fa-circle"></i> Reports, documents, and materials produced by Uneek for a client are for the client's use only and may not be shared with third parties without consent.</li>
+          </ul>
+        </div>
+
+        <!-- S12 Termination -->
+        <div class="terms-section reveal" id="s12">
+          <div class="section-number">Section 12</div>
+          <h2 class="section-heading"><i class="fas fa-times-circle"></i> Termination</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">Either party may terminate a service agreement in accordance with the notice provisions set out in the relevant Service Contract. In general:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> Either party may terminate a management agreement by giving the required written notice period as specified in the contract (typically 30–60 days).</li>
+            <li><i class="fas fa-circle"></i> Uneek may terminate a service agreement immediately if the client is in material breach of these terms or the service contract and fails to remedy the breach within 14 days of written notice.</li>
+            <li><i class="fas fa-circle"></i> Upon termination, the client must settle all outstanding fees and reimburse any approved expenditure incurred by Uneek on the client's behalf.</li>
+            <li><i class="fas fa-circle"></i> Uneek will return all client documents and keys within a reasonable time following termination and will assist in the orderly handover of management responsibilities.</li>
+            <li><i class="fas fa-circle"></i> Clauses relating to confidentiality, intellectual property, and dispute resolution shall survive the termination of any agreement.</li>
+          </ul>
+        </div>
+
+        <!-- S13 Dispute Resolution -->
+        <div class="terms-section reveal" id="s13">
+          <div class="section-number">Section 13</div>
+          <h2 class="section-heading"><i class="fas fa-balance-scale"></i> Dispute Resolution</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">In the event of any dispute, claim, or controversy arising out of or in connection with these Terms or any service agreement, the parties agree to the following resolution process:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> <div><strong>Step 1 — Negotiation:</strong> The parties will first attempt to resolve the dispute through good-faith negotiation within 21 days of a written notice of dispute.</div></li>
+            <li><i class="fas fa-circle"></i> <div><strong>Step 2 — Mediation:</strong> If negotiation fails, the parties agree to submit to mediation through a mutually agreed mediator before initiating any legal proceedings.</div></li>
+            <li><i class="fas fa-circle"></i> <div><strong>Step 3 — Litigation:</strong> If mediation is unsuccessful, disputes may be referred to the courts of Ghana with jurisdiction over the subject matter.</div></li>
+          </ul>
+          <div class="terms-highlight"><strong>Good Faith:</strong> Both parties commit to engaging in the dispute resolution process in good faith, with the genuine intention of reaching a fair and reasonable resolution.</div>
+        </div>
+
+        <!-- S14 Governing Law -->
+        <div class="terms-section reveal" id="s14">
+          <div class="section-number">Section 14</div>
+          <h2 class="section-heading"><i class="fas fa-gavel"></i> Governing Law</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">These Terms of Service and any service agreements entered into with Uneek are governed by and construed in accordance with the laws of the Republic of Ghana, including but not limited to:</p>
+          <ul class="terms-list">
+            <li><i class="fas fa-circle"></i> The Rent Act, 1963 (Act 220) and applicable amendments.</li>
+            <li><i class="fas fa-circle"></i> The Contracts Act, 1960 (Act 25).</li>
+            <li><i class="fas fa-circle"></i> The Land Act, 2020 (Act 1036).</li>
+            <li><i class="fas fa-circle"></i> The Real Estate Agency Act, 2020 (Act 1047).</li>
+            <li><i class="fas fa-circle"></i> Any other applicable Ghanaian statute, regulation, or statutory instrument.</li>
+          </ul>
+          <p class="terms-text">The parties submit to the exclusive jurisdiction of the courts of Ghana for the resolution of any disputes that cannot be resolved through the process set out in Section 13.</p>
+          <p class="terms-text">Uneek reserves the right to update or amend these Terms of Service at any time. Notice of material changes will be posted on our website. Continued use of our services after such changes constitutes acceptance of the revised terms.</p>
+        </div>
+
+        <!-- S15 Contact -->
+        <div class="terms-section reveal" id="s15">
+          <div class="section-number">Section 15</div>
+          <h2 class="section-heading"><i class="fas fa-envelope"></i> Contact Information</h2>
+          <div class="divider-gold"></div>
+          <p class="terms-text">If you have any questions, concerns, or requests regarding these Terms of Service, please contact us through any of the following channels:</p>
+          <div class="row g-3 mt-2">
+            <div class="col-sm-6">
+              <div style="background:var(--off-white);padding:1.5rem;border-radius:6px;border:1px solid rgba(0,0,0,.07);">
+                <div style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;"><i class="fas fa-building me-1"></i> Registered Office</div>
+                <div style="font-size:.9rem;color:var(--text-mid);line-height:1.7;">Uneek Property Management & Real Estate<br/>[Street Address Placeholder]<br/>[Area / Suburb], Accra, Ghana</div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div style="background:var(--off-white);padding:1.5rem;border-radius:6px;border:1px solid rgba(0,0,0,.07);">
+                <div style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;"><i class="fas fa-address-card me-1"></i> Contact Details</div>
+                <div style="font-size:.9rem;color:var(--text-mid);line-height:1.7;">
+                  <i class="fas fa-phone me-1" style="color:var(--gold);"></i> [Phone Placeholder]<br/>
+                  <i class="fas fa-envelope me-1" style="color:var(--gold);"></i> [Email Placeholder]<br/>
+                  <i class="fab fa-whatsapp me-1" style="color:#25D366;"></i> [WhatsApp Placeholder]
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="terms-text mt-4" style="font-size:.85rem;color:var(--text-light);">These Terms of Service were last reviewed and updated on <strong>1 January 2025</strong>. If you are reading a printed copy, please verify that you have the most current version by visiting our website.</p>
+        </div>
+
+      </div><!-- /terms-content -->
+    </div><!-- /row -->
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <a class="navbar-brand mb-3 d-inline-flex" href="index.html" style="text-decoration:none;">
+          <div class="brand-logo">U</div>
+          <div class="brand-text ms-3">
+            <span class="brand-name">UNEEK</span>
+            <span class="brand-tagline">Property Management & Real Estate</span>
+          </div>
+        </a>
+        <p class="footer-desc">Ghana's trusted partner for property management, real estate agency, construction, and cleaning services. Excellence in every detail.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-2">
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+          <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-heading">Legal</div>
+        <ul class="footer-links">
+          <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+          <li><a href="privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-heading">Contact Us</div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> [Address Placeholder], Accra, Ghana</div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i> [Phone Placeholder]</div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i> [Email Placeholder]</div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i> [WhatsApp Placeholder]</div>
+        <div class="footer-contact-item"><i class="far fa-clock"></i> Mon–Sat: 8:00am – 6:00pm</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="row align-items-center">
+        <div class="col-md-6"><div class="footer-bottom-text">© 2025 Uneek Property Management & Real Estate. All rights reserved.</div></div>
+        <div class="col-md-6 text-md-end"><div class="footer-bottom-text"><a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING BUTTONS ── -->
+<div class="floating-buttons">
+  <a href="https://wa.me/233000000000" target="_blank" class="float-btn float-whatsapp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+233000000000" class="float-btn float-call"><i class="fas fa-phone"></i></a>
+</div>
+<a href="#" class="back-top" id="backTop" title="Back to top"><i class="fas fa-chevron-up"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Sticky nav
+  const nav = document.getElementById('mainNav');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    backTop.classList.toggle('show', window.scrollY > 400);
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // TOC active highlight on scroll
+  const sections = document.querySelectorAll('.terms-section[id]');
+  const tocLinks  = document.querySelectorAll('.toc-link');
+  const scrollSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+  sections.forEach(s => scrollSpy.observe(s));
+
+  // Smooth scroll for TOC links
+  tocLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
