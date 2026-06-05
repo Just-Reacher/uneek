@@ -246,16 +246,16 @@
           <div class="quick-icon qi-phone"><i class="fas fa-phone"></i></div>
           <div>
             <div class="quick-label">Call Us Directly</div>
-            <div class="quick-value">[Phone Number]</div>
+            <div class="quick-value">233200076044</div>
           </div>
         </a>
       </div>
       <div class="col-12 col-sm-6 col-lg-3">
-        <a href="https://wa.me/233000000000" target="_blank" class="quick-item">
+        <a href="https://wa.me/+233551523225" target="_blank" class="quick-item">
           <div class="quick-icon qi-whatsapp"><i class="fab fa-whatsapp"></i></div>
           <div>
             <div class="quick-label">WhatsApp Chat</div>
-            <div class="quick-value">[WhatsApp Number]</div>
+            <div class="quick-value">+233 551523225</div>
           </div>
         </a>
       </div>
@@ -264,7 +264,7 @@
           <div class="quick-icon qi-email"><i class="fas fa-envelope"></i></div>
           <div>
             <div class="quick-label">Email Address</div>
-            <div class="quick-value">[Email Address]</div>
+            <div class="quick-value">uneekpropertymanagement@gmail.com</div>
           </div>
         </a>
       </div>
@@ -273,7 +273,7 @@
           <div class="quick-icon qi-location"><i class="fas fa-map-marker-alt"></i></div>
           <div>
             <div class="quick-label">Office Location</div>
-            <div class="quick-value">[Address], Accra</div>
+            <div class="quick-value">Madina market opposite Randy pharmacy, Accra</div>
           </div>
         </div>
       </div>
@@ -288,89 +288,169 @@
 
       <!-- LEFT: FORM -->
       <div class="col-lg-7 reveal">
-        <div class="section-eyebrow">Send a Message</div>
-        <h2 class="section-title">Let's Start a<br/>Conversation</h2>
-        <div class="divider-gold"></div>
-        <p class="section-lead mb-4">Fill in the form below and a member of our team will get back to you within 24 hours on business days.</p>
+  <div class="section-eyebrow">Send a Message</div>
+  <h2 class="section-title">Let's Start a<br/>Conversation</h2>
+  <div class="divider-gold"></div>
 
-        <div class="form-wrap">
-          <!-- Success message (hidden by default) -->
-          <div class="success-msg" id="successMsg">
-            <i class="fas fa-check-circle"></i>
-            <h4>Message Sent!</h4>
-            <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+  <p class="section-lead mb-4">
+    Fill in the form below and a member of our team will get back to you within 24 hours on business days.
+  </p>
+
+  <div class="form-wrap">
+
+    <!-- Success message (hidden by default) -->
+    <div class="success-msg" id="successMsg">
+      <i class="fas fa-check-circle"></i>
+      <h4>Message Sent!</h4>
+      <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+    </div>
+
+    <!-- FORM START -->
+    <form action="mailto:uneekpropertymanagement@gmail.com" method="POST" enctype="text/plain">
+
+      <div id="contactForm">
+
+        <!-- Who are you? -->
+        <div class="mb-4">
+          <label class="form-label-custom">I am a *</label>
+
+          <div class="radio-group">
+            <div class="radio-pill">
+              <input type="radio" name="Role" id="r1" value="Property Owner" checked>
+              <label for="r1">Property Owner</label>
+            </div>
+
+            <div class="radio-pill">
+              <input type="radio" name="Role" id="r2" value="Tenant">
+              <label for="r2">Tenant</label>
+            </div>
+
+            <div class="radio-pill">
+              <input type="radio" name="Role" id="r3" value="Investor">
+              <label for="r3">Investor</label>
+            </div>
+
+            <div class="radio-pill">
+              <input type="radio" name="Role" id="r4" value="Construction Client">
+              <label for="r4">Construction Client</label>
+            </div>
+
+            <div class="radio-pill">
+              <input type="radio" name="Role" id="r5" value="Other">
+              <label for="r5">Other</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label class="form-label-custom" for="fullName">Full Name *</label>
+
+            <input 
+              class="form-control-custom" 
+              type="text" 
+              id="fullName"
+              name="Full Name"
+              placeholder="Your full name" 
+              required />
           </div>
 
-          <div id="contactForm">
-            <!-- Who are you? -->
-            <div class="mb-4">
-              <label class="form-label-custom">I am a *</label>
-              <div class="radio-group">
-                <div class="radio-pill"><input type="radio" name="role" id="r1" value="Property Owner" checked><label for="r1">Property Owner</label></div>
-                <div class="radio-pill"><input type="radio" name="role" id="r2" value="Tenant"><label for="r2">Tenant</label></div>
-                <div class="radio-pill"><input type="radio" name="role" id="r3" value="Investor"><label for="r3">Investor</label></div>
-                <div class="radio-pill"><input type="radio" name="role" id="r4" value="Construction Client"><label for="r4">Construction Client</label></div>
-                <div class="radio-pill"><input type="radio" name="role" id="r5" value="Other"><label for="r5">Other</label></div>
-              </div>
-            </div>
+          <div class="col-md-6">
+            <label class="form-label-custom" for="phone">Phone Number *</label>
 
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label-custom" for="fullName">Full Name *</label>
-                <input class="form-control-custom" type="text" id="fullName" placeholder="Your full name" required />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label-custom" for="phone">Phone Number *</label>
-                <input class="form-control-custom" type="tel" id="phone" placeholder="+233 XX XXX XXXX" required />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label-custom" for="email">Email Address *</label>
-                <input class="form-control-custom" type="email" id="email" placeholder="your@email.com" required />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label-custom" for="service">Service Interested In</label>
-                <select class="form-control-custom" id="service">
-                  <option value="">Select a service...</option>
-                  <option>Tenant Screening &amp; Leasing</option>
-                  <option>Rent Collection</option>
-                  <option>Property Maintenance</option>
-                  <option>Financial Reporting</option>
-                  <option>Real Estate Agency</option>
-                  <option>Building &amp; Construction</option>
-                  <option>Cleaning Services</option>
-                  <option>General Enquiry</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label class="form-label-custom" for="subject">Subject *</label>
-                <input class="form-control-custom" type="text" id="subject" placeholder="Brief subject of your message" required />
-              </div>
-              <div class="col-12">
-                <label class="form-label-custom" for="message">Your Message *</label>
-                <textarea class="form-control-custom" id="message" placeholder="Tell us about your property, project, or inquiry in detail..." required></textarea>
-              </div>
-              <div class="col-12">
-                <label class="form-label-custom">How did you hear about us?</label>
-                <select class="form-control-custom" id="source">
-                  <option value="">Select an option...</option>
-                  <option>Google Search</option>
-                  <option>Social Media (Facebook / Instagram)</option>
-                  <option>Referral from a friend</option>
-                  <option>WhatsApp</option>
-                  <option>Roadside Signage</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="col-12 mt-2">
-                <button type="button" class="btn-submit" id="submitBtn" onclick="handleSubmit()">
-                  <span class="btn-text"><i class="fas fa-paper-plane"></i> &nbsp;Send Message</span>
-                  <div class="spinner"></div>
-                </button>
-              </div>
-            </div>
-          </div><!-- /contactForm -->
-        </div><!-- /form-wrap -->
+            <input 
+              class="form-control-custom" 
+              type="tel" 
+              id="phone"
+              name="Phone Number"
+              placeholder="+233 XX XXX XXXX" 
+              required />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label-custom" for="email">Email Address *</label>
+
+            <input 
+              class="form-control-custom" 
+              type="email" 
+              id="email"
+              name="Email Address"
+              placeholder="uneekproperty@gmail.com" 
+              required />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label-custom" for="service">Service Interested In</label>
+
+            <select class="form-control-custom" id="service" name="Service">
+              <option value="">Select a service...</option>
+              <option>Tenant Screening &amp; Leasing</option>
+              <option>Rent Collection</option>
+              <option>Property Maintenance</option>
+              <option>Financial Reporting</option>
+              <option>Real Estate Agency</option>
+              <option>Building &amp; Construction</option>
+              <option>Cleaning Services</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label-custom" for="subject">Subject *</label>
+
+            <input 
+              class="form-control-custom" 
+              type="text" 
+              id="subject"
+              name="Subject"
+              placeholder="Brief subject of your message" 
+              required />
+          </div>
+
+          <div class="col-12">
+            <label class="form-label-custom" for="message">Your Message *</label>
+
+            <textarea 
+              class="form-control-custom" 
+              id="message"
+              name="Message"
+              placeholder="Tell us about your property, project, or inquiry in detail..." 
+              required></textarea>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label-custom">How did you hear about us?</label>
+
+            <select class="form-control-custom" id="source" name="Referral Source">
+              <option value="">Select an option...</option>
+              <option>Google Search</option>
+              <option>Social Media (Facebook / Instagram)</option>
+              <option>Referral from a friend</option>
+              <option>WhatsApp</option>
+              <option>Roadside Signage</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="col-12 mt-2">
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <span class="btn-text">
+                <i class="fas fa-paper-plane"></i> &nbsp;Send Message
+              </span>
+
+              <div class="spinner"></div>
+            </button>
+          </div>
+
+        </div>
       </div>
+
+    </form>
+    <!-- FORM END -->
+
+  </div>
+</div>
 
       <!-- RIGHT: INFO SIDEBAR -->
       <div class="col-lg-5 reveal">
@@ -382,7 +462,7 @@
             <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
             <div>
               <div class="info-label">Office Address</div>
-              <div class="info-value">[Street Address Placeholder]<br/>[Area / Suburb], Accra<br/>Ghana</div>
+              <div class="info-value">Madina market opposite Randy pharmacy, Accra<br/>Ghana</div>
             </div>
           </div>
 
@@ -391,8 +471,8 @@
             <div>
               <div class="info-label">Phone Numbers</div>
               <div class="info-value">
-                <a href="tel:+233000000000">[Primary Phone]</a><br/>
-                <a href="tel:+233000000001">[Secondary Phone]</a>
+                <a href="tel:+233551523225">233551523225</a><br/>
+                <a href="tel:+233551523226">233200076044</a>
               </div>
             </div>
           </div>
@@ -401,7 +481,7 @@
             <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
             <div>
               <div class="info-label">WhatsApp</div>
-              <div class="info-value"><a href="https://wa.me/233000000000" target="_blank">[WhatsApp Number]</a></div>
+              <div class="info-value"><a href="https://wa.me/233551523225" target="_blank">233551523225</a></div>
             </div>
           </div>
 
@@ -410,8 +490,8 @@
             <div>
               <div class="info-label">Email Address</div>
               <div class="info-value">
-                <a href="mailto:info@uneekproperty.com">[Email Address]</a><br/>
-                <a href="mailto:support@uneekproperty.com">[Support Email]</a>
+                <a href="mailto:info@uneekproperty.com">uneekpropertymanagement@gmail.com</a><br/>
+                <a href="mailto:support@uneekproperty.com">support@uneekproperty.com</a>
               </div>
             </div>
           </div>
@@ -433,22 +513,24 @@
           <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid rgba(0,0,0,.07);">
             <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:.75rem;">Follow Us</div>
             <div class="social-row">
-              <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-link" title="Twitter / X"><i class="fab fa-twitter"></i></a>
-              <a href="https://wa.me/233000000000" class="social-link wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
 
-          <!-- Quick Action Buttons -->
-          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:.75rem;">
-            <a href="tel:+233000000000" style="background:var(--green-deep);color:var(--white);padding:.85rem 1.5rem;border-radius:4px;text-decoration:none;display:flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;">
-              <i class="fas fa-phone"></i> Call Now
-            </a>
-            <a href="https://wa.me/233000000000" target="_blank" style="background:#25D366;color:var(--white);padding:.85rem 1.5rem;border-radius:4px;text-decoration:none;display:flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;">
-              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-            </a>
+  <a href="https://facebook.com/uneekpropertygh" target="_blank" class="social-link" title="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://instagram.com/uneekpropertygh" target="_blank" class="social-link" title="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://tiktok.com/@uneekpropertymanagement" target="_blank" class="social-link" title="TikTok">
+    <i class="fab fa-tiktok"></i>
+  </a>
+
+  <a href="https://wa.me/233551523225" target="_blank" class="social-link wa" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+</div>
           </div>
         </div>
       </div>
@@ -465,8 +547,8 @@
     </iframe>
     <div class="map-overlay-card">
       <h4>Find Our Office</h4>
-      <div class="map-detail"><i class="fas fa-map-marker-alt"></i> [Street Address], [Area], Accra, Ghana</div>
-      <div class="map-detail"><i class="fas fa-phone"></i> [Phone Number]</div>
+      <div class="map-detail"><i class="fas fa-map-marker-alt"></i> Madina market opposite Randy pharmacy, Accra, Ghana</div>
+      <div class="map-detail"><i class="fas fa-phone"></i> +233 551523225</div>
       <div class="map-detail"><i class="far fa-clock"></i> Mon–Fri: 8am–6pm · Sat: 9am–3pm</div>
       <a href="https://www.google.com/maps/search/Accra,+Ghana" target="_blank" class="btn-directions">
         <i class="fas fa-directions"></i> Get Directions
@@ -603,7 +685,7 @@
           <a href="tel:+233000000000" style="background:var(--green-deep);color:var(--white);padding:.9rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
             <i class="fas fa-phone"></i> Call Now
           </a>
-          <a href="https://wa.me/233000000000" target="_blank" style="background:#25D366;color:var(--white);padding:.9rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+          <a href="https://wa.me/+233551523225" target="_blank" style="background:#25D366;color:var(--white);padding:.9rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
             <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
         </div>
@@ -626,12 +708,18 @@
         </a>
         <p class="footer-desc">Ghana's trusted partner for property management, real estate agency, construction, and cleaning services. Excellence in every detail.</p>
         <div class="footer-social">
-          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-        </div>
+  <a href="https://facebook.com/uneekpropertygh" target="_blank" class="social-btn">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://instagram.com/uneekpropertygh" target="_blank" class="social-btn">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://tiktok.com/@uneekpropertymanagement" target="_blank" class="social-btn">
+    <i class="fab fa-tiktok"></i>
+  </a>
+</div>
       </div>
       <div class="col-sm-6 col-lg-2">
         <div class="footer-heading">Quick Links</div>
@@ -658,9 +746,9 @@
       </div>
       <div class="col-lg-3">
         <div class="footer-heading">Contact Us</div>
-        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> [Address Placeholder], Accra, Ghana</div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Madina market opposite Randy pharmacy, Accra, Ghana</div>
         <div class="footer-contact-item"><i class="fas fa-phone"></i> +233 200076044</div>
-        <div class="footer-contact-item"><i class="fas fa-envelope"></i> [Email Placeholder]</div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i> uneekpropertymanagement@gmail.com</div>
         <div class="footer-contact-item"><i class="fab fa-whatsapp"></i> +233 551523225</div>
         <div class="footer-contact-item"><i class="far fa-clock"></i> Mon–Sat: 8:00am – 6:00pm</div>
       </div>
@@ -668,7 +756,7 @@
     <div class="footer-bottom">
       <div class="row align-items-center">
         <div class="col-md-6"><div class="footer-bottom-text">© 2026 Uneek Property Management & Real Estate. All rights reserved.</div></div>
-        <div class="col-md-6 text-md-end"><div class="footer-bottom-text"><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></div></div>
+        <div class="col-md-6 text-md-end"><div class="footer-bottom-text"><a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></div></div>
       </div>
     </div>
   </div>
