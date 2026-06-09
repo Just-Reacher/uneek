@@ -217,7 +217,7 @@
     }
     .team-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,.1); }
     .team-photo { height:260px; position:relative; overflow:hidden; background:var(--green-deep); }
-    .team-photo img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+    .team-photo img { width:100%; height:100%; object-fit:cover; object-position: center 20%; transition:transform .5s; }
     .team-card:hover .team-photo img { transform:scale(1.05); }
     .team-photo-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(13,51,32,.7) 0%,transparent 50%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:1rem; }
     .team-card:hover .team-photo-overlay { opacity:1; }
@@ -595,7 +595,7 @@
       <div class="col-sm-6 col-lg-3 reveal">
         <div class="team-card">
           <div class="team-photo">
-            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80" alt="Team Member" />
+            <img src="images/team-member-1.png" alt="Team Member" />
             <div class="team-photo-overlay">
               <div class="team-social-links">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
